@@ -1,23 +1,23 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Layout from "./Layout";
+import Home from "./js/pages/Home";
+import LogInOut from "./js/pages/LogInOut";
+import FilterPage from "./js/pages/FilterPage";
+import Destination from "./js/pages/Destination";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          GONZINATOR <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="FilterPage" element={<FilterPage />} />
+          <Route path="Destination" element={<Destination />} />
+          <Route path="LogInOut" element={<LogInOut />} />
+          {/* <Route path="RentalDetail/:id" element={<RentalDetail />} /> */}
+        </Route>
+      </Routes>
     </div>
   );
 }
