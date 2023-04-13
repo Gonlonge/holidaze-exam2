@@ -1,0 +1,46 @@
+@use "./scss/theme-colors" as colors;
+
+/* Containers */
+
+// .small-container {
+//   max-width: 860px;
+//   margin: 0px auto;
+//   padding: 0px 20px;
+// }
+
+/* Images */
+
+.responsive-img {
+  width: 100%;
+  height: auto;
+  // border-radius: 5px;
+}
+
+/* Separator lines */
+
+.separator {
+  border-top: 1px solid colors.$light-color;
+  margin: 20px 0;
+}
+
+/* Center items */
+
+.center-items {
+  display: flex;
+  justify-content: center;
+}
+
+/* media query */
+
+/* This rule will only apply to screens with a maximum width of 768px, which is the size of a tablet or small laptop */
+
+// @media (max-width: 800px) {
+//   .header-desktop {
+//   }
+
+//   .header-mobile {
+//   }
+
+//   @media (min-width: 800px) {
+//   }
+// }

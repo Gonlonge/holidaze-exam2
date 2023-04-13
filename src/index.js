@@ -3,9 +3,12 @@ import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import ReactDOM from "react-dom/client";
 import React from "react";
-import "./main.scss";
-import "./scss/logo.scss";
-import "./scss/fonts.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles.scss";
+import "./scss/_icons.scss";
+import "./scss/_fonts.scss";
+import "./scss/_spaces.scss";
+import "./scss/_nav.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

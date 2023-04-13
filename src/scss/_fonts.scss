@@ -1,0 +1,18 @@
+@use "_theme-colors" as colors;
+
+$h1-font-family: "Poppins", sans-serif;
+$a-font-family: "roboto", sans-serif;
+
+$a-text-decoration: none;
+$a-font-weight: 100;
+
+h1 {
+  font-family: $h1-font-family;
+}
+
+a {
+  font-family: $a-font-family;
+  color: colors.$dark-color;
+  text-decoration: none;
+  font-weight: 100;
+}
