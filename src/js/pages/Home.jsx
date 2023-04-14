@@ -1,7 +1,8 @@
 import Nav from "../components/Nav";
 import headerImage from "../../images/headerImage.svg";
-import Cards from "../components/Cards";
+// import Cards from "../components/Cards";
 import { Container } from "react-bootstrap";
+import GetApi from "../components/GetApi";
 
 function Home() {
   return (
@@ -9,7 +10,8 @@ function Home() {
       <div>
         <img className="responsive-img" src={headerImage} alt="Header" />
         <Nav />
-        <Cards />
+        <GetApi />
+        {/* <Cards /> */}
       </div>
     </Container>
   );
