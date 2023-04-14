@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const API_BASE = "https://api.noroff.dev/api/v1/holidaze/auth/register";
 
