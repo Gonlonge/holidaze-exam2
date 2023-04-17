@@ -11,8 +11,8 @@ function Home() {
         <img className="responsive-img" src={headerImage} alt="Header" />
         <Nav />
         <GetApi />
-        {/* <Cards /> */}
       </div>
+      <div className="footer-margin"></div>
     </Container>
   );
 }

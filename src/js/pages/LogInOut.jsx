@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Form, Button, Alert } from "react-bootstrap";
-
-const API_LOGIN = "https://api.noroff.dev/api/v1/holidaze/auth/login";
+import { API_BASE, API_LOGIN } from "../ApiEndpoints";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -19,7 +18,7 @@ function Login() {
     }
 
     try {
-      const response = await fetch(API_LOGIN, {
+      const response = await fetch(API_BASE, API_LOGIN, {
         method: "POST",
         body: JSON.stringify({ email, password }),
         headers: {

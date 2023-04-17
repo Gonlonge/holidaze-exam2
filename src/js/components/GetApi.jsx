@@ -1,8 +1,8 @@
 // Get venue
 
 import React, { useEffect, useState } from "react";
-
-const API_BASE = "https://api.noroff.dev/api/v1/holidaze/venues";
+import { Link } from "react-router-dom";
+import { API_BASE, API_VENUE } from "../ApiEndpoints";
 
 function GetApi() {
   const [venues, setVenues] = useState([]);
@@ -14,7 +14,7 @@ function GetApi() {
       try {
         setIsError(false);
         setIsLoading(true);
-        const response = await fetch(API_BASE);
+        const response = await fetch(API_BASE + API_VENUE);
         console.log(response);
         const json = await response.json();
         console.log(json);
@@ -41,26 +41,26 @@ function GetApi() {
     <div>
       {venues.map((venue) => (
         <div key={venue.id}>
-          {venue.media.map((image) => (
-            <img
-              className="responsive-img"
-              src={image}
-              alt={venue.name}
-              key={image}
-            />
-          ))}
-
-          <div className="row mt-2">
-            <div className="col">
-              <div>{venue.name}</div>
+          <Link to={`RentalDetail/${venue.id}`}>
+            {venue.media.length > 0 ? (
+              <img
+                className="responsive-img"
+                src={venue.media[0]}
+                alt={venue.name}
+              />
+            ) : null}
+            <div className="row mt-2">
+              <div className="col">
+                <div>{venue.name}</div>
+              </div>
+              <div className="col">
+                <p>Max Guests: {venue.maxGuests}</p>
+              </div>
             </div>
-            <div className="col">
-              <p>Max Guests: {venue.maxGuests}</p>
+            <div className="mb-5">
+              <p>Price: {venue.price}</p>
             </div>
-          </div>
-          <div className="mb-5">
-            <p>Price: {venue.price}</p>
-          </div>
+          </Link>
         </div>
       ))}
     </div>
@@ -68,36 +68,3 @@ function GetApi() {
 }
 
 export default GetApi;
-
-// import React, { useState, useEffect } from "react";
-
-// const API_BASE = "https://api.noroff.dev/api/v1/holidaze/venues";
-
-// function GetApi() {
-//   const [venues, setVenues] = useState([]);
-
-//   useEffect(() => {
-//     fetch(API_BASE)
-//       .then((response) => response.json())
-//       .then((data) => {
-//         console.log(data); // log the data to the console
-//         setVenues(data);
-//       })
-//       .catch((error) => console.error(error));
-//   }, []);
-
-//   return (
-//     <div>
-//       {venues.map((venue) => (
-//         <div key={venue.id}>
-//           {venue.media.map((image) => (
-//             <img src={image} key={image} />
-//           ))}
-//           <p>Max Guests: {venue.maxGuests}</p>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
-// export default GetApi;

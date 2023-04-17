@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-
-const API_BASE = "https://api.noroff.dev/api/v1/holidaze/auth/register";
+import { API_BASE, API_REGISTER } from "../ApiEndpoints";
 
 function Register() {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +15,7 @@ function Register() {
     try {
       setIsError(false);
       setIsLoading(true);
-      const response = await fetch(API_BASE, {
+      const response = await fetch(API_BASE + API_REGISTER, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
