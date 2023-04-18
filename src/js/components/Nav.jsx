@@ -39,11 +39,11 @@ function Nav() {
             </Link>
           </li>
           <li className="ms-4">
-            <Link to="/LogInOut">
+            <Link to="/LogIn">
               <p className="none-margin-center">
                 <img className="navbar-icon" src={user} alt="user" />
               </p>
-              LogInOut
+              Log In
             </Link>
           </li>
         </ul>

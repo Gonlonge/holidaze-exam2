@@ -14,13 +14,14 @@ avatar
 null
 email
 :
-"tusselad@stud.noroff.no"
+"tusselad123@stud.noroff.no"
 id
 :
 91
 name
+tusselad123
 :
-"tusselad"
+"tusselad123"
 venueManager
 :
 false -->

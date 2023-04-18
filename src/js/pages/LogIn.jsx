@@ -18,7 +18,7 @@ function Login() {
     }
 
     try {
-      const response = await fetch(API_BASE, API_LOGIN, {
+      const response = await fetch(`${API_BASE}${API_LOGIN}`, {
         method: "POST",
         body: JSON.stringify({ email, password }),
         headers: {
@@ -31,11 +31,18 @@ function Login() {
         return;
       }
 
-      // Handle successful login here
+      const json = await response.json(); // Parse response data as JSON
+      console.log(json); // Log the JSON data
       setEmail("");
       setPassword("");
       setError(null);
+
+      // Store the accessToken in localStorage
+      localStorage.setItem("accessToken", json.accessToken);
+
       console.log("Successful login!");
+      // Redirect to profile page
+      window.location.href = "/Profile";
     } catch (error) {
       setError("An error occurred. Please try again later.");
       console.error(error);
@@ -57,7 +64,6 @@ function Login() {
               aria-label="Email address"
             />
           </Form.Group>
-
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
