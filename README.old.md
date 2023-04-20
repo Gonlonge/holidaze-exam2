@@ -8,6 +8,8 @@
 
 # npm install bootstrap
 
+# npm install react-burger-menu --save
+
 <!-- TEST USER
 avatar
 :

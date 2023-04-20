@@ -9,6 +9,8 @@ import "./scss/_icons.scss";
 import "./scss/_fonts.scss";
 import "./scss/_spaces.scss";
 import "./scss/_nav.scss";
+import "./scss/_modal.scss";
+import "./scss/_buttons.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
