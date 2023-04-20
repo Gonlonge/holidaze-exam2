@@ -52,3 +52,36 @@
 //   @media (min-width: 800px) {
 //   }
 // }
+
+// hambuger menu
+.navbar-collapse {
+  position: relative;
+}
+
+.collapse {
+  position: absolute;
+  bottom: 100%;
+  transition: none;
+  background-color: colors.$white-color;
+  padding: 55px;
+  border: 1px solid colors.$light-color;
+  border-bottom: none;
+  border-right: none;
+}
+
+.background-color-button {
+  background-color: colors.$white-color;
+  border: none;
+  color: colors.$dark-color;
+  padding: 0;
+  user-select: none;
+}
+
+.background-color-button:focus,
+.background-color-button:active,
+.background-color-button:hover {
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+  color: colors.$dark-color;
+}

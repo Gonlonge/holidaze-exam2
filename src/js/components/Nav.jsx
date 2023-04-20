@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import filter from "../../images/filter.svg";
+// import filter from "../../images/filter.svg";
 import user from "../../images/person.svg";
 import home from "../../images/home.svg";
 import destination from "../../images/holiday-village.svg";
+import FilterMenu from "./FilterMenu";
 
 function Nav() {
   return (
@@ -18,14 +19,15 @@ function Nav() {
               Home
             </Link>
           </li>
-          <li className="ms-4">
+          {/* <li className="ms-4">
             <Link to="/FilterPage">
               <p className="none-margin-center">
                 <img className="navbar-icon" src={filter} alt="Logo" />
               </p>
               Filter
             </Link>
-          </li>
+          </li> */}
+          <FilterMenu />
           <li className="ms-4">
             <Link to="/Destination">
               <p className="none-margin-center">

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { API_BASE, API_PROFILE } from "../ApiEndpoints";
 import { Row, Col, Container, Modal, Button } from "react-bootstrap";
-
 import HandleLogout from "../components/HandleLogout";
 import profileImage from "../../images/cards.png";
 import Nav from "../components/Nav";

@@ -1,8 +1,7 @@
-// Get venue
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { API_BASE, API_VENUE } from "../ApiEndpoints";
+import { Col, Row, Image } from "react-bootstrap";
 
 function GetApi() {
   const [venues, setVenues] = useState([]);
@@ -38,32 +37,26 @@ function GetApi() {
   }
 
   return (
-    <div>
+    <Row>
       {venues.map((venue) => (
-        <div key={venue.id}>
+        <Col md={4} sm={6} key={venue.id}>
           <Link to={`RentalDetail/${venue.id}`}>
             {venue.media.length > 0 ? (
-              <img
-                className="responsive-img"
+              <Image
+                className="img-fluid"
                 src={venue.media[0]}
                 alt={venue.name}
               />
             ) : null}
-            <div className="row mt-2">
-              <div className="col">
-                <div>{venue.name}</div>
-              </div>
-              <div className="col">
-                <p>Max Guests: {venue.maxGuests}</p>
-              </div>
-            </div>
-            <div className="mb-5">
+            <div className="mt-2">
+              <h5>{venue.name}</h5>
+              <p>Max Guests: {venue.maxGuests}</p>
               <p>Price: {venue.price}</p>
             </div>
           </Link>
-        </div>
+        </Col>
       ))}
-    </div>
+    </Row>
   );
 }
 
