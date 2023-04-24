@@ -1,4 +1,4 @@
-import { Button, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 function HandleLogout() {
   const handleLogout = () => {
@@ -8,11 +8,14 @@ function HandleLogout() {
   };
 
   return (
-    <Container>
-      <Button variant="primary" onClick={handleLogout} aria-label="Logout">
-        Logout
-      </Button>
-    </Container>
+    <Button
+      className="logout-button"
+      variant="primary"
+      onClick={handleLogout}
+      aria-label="Logout"
+    >
+      Logout
+    </Button>
   );
 }
 

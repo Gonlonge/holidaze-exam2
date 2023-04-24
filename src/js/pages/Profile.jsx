@@ -75,10 +75,10 @@ function Profile() {
             </div>
           </Col>
           <Col xs={12} md={4}>
-            <p className="mt-2">Welcome Back, {user.name}!</p>
+            <small className="mt-2">Welcome Back, {user.name}!</small>
             <Row>
               <Col>
-                <p>Email: {user.email}</p>
+                <small>Email: {user.email}</small>
               </Col>
             </Row>
             <div className=" mt-0"></div>

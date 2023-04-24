@@ -1,7 +1,26 @@
+@use "_theme-colors" as colors;
+
 .edit-button {
+  padding: 0px;
   border: none;
   background-color: transparent;
-  color: #333;
-  font-weight: bold;
+  font-size: 14px;
   cursor: pointer;
+  position: relative;
+  bottom: 27px;
+}
+
+.logout-button {
+  color: colors.$dark-color;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
+
+  &:hover {
+    background-color: colors.$white-color;
+    color: colors.$dark-color;
+  }
 }

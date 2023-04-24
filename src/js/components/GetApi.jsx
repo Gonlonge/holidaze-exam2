@@ -42,13 +42,15 @@ function GetApi() {
         <Col md={4} sm={6} key={venue.id}>
           <Link to={`RentalDetail/${venue.id}`}>
             {venue.media.length > 0 ? (
-              <Image
-                className="img-fluid"
-                src={venue.media[0]}
-                alt={venue.name}
-              />
+              <div className="ratio ratio-4x3">
+                <Image
+                  className="img-fluid"
+                  src={venue.media[0]}
+                  alt={venue.name}
+                />
+              </div>
             ) : null}
-            <div className="mt-2">
+            <div className="mt-2 mb-5">
               <h5>{venue.name}</h5>
               <div>Max Guests: {venue.maxGuests}</div>
               <div>Price: {venue.price}</div>

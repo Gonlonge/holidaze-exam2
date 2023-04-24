@@ -45,13 +45,13 @@ function RentalDetail() {
           <h1 className="mt-2">{venueId.name}</h1>
           <Row>
             <Col>
-              <div>Price: ${venueId.price} Night</div>
+              <div className="mt-2">Price: ${venueId.price} Night</div>
             </Col>
             <Col>
-              <div>Guests: {venueId.maxGuests}</div>
+              <div className="mt-2">Guests: {venueId.maxGuests}</div>
             </Col>
-            <div className="separator mt-0"></div>
-          </Row>
+          </Row>{" "}
+          <div className="separator mt-0"></div>
           <div>
             <div>{venueId.description}</div>
           </div>
