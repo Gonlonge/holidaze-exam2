@@ -3,3 +3,4 @@ export const API_VENUE = "holidaze/venues";
 export const API_LOGIN = "holidaze/auth/login";
 export const API_REGISTER = "holidaze/auth/register";
 export const API_PROFILE = "holidaze/profiles/";
+// export const API_MEDIA = "/holidaze/profiles/:name/media";

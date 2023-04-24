@@ -4,7 +4,7 @@ function Destination() {
   return (
     <div>
       <Nav />
-      <p>destination</p>
+      <div>destination</div>
     </div>
   );
 }

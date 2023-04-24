@@ -45,31 +45,31 @@ function RentalDetail() {
           <h1 className="mt-2">{venueId.name}</h1>
           <Row>
             <Col>
-              <p>Price: ${venueId.price} Night</p>
+              <div>Price: ${venueId.price} Night</div>
             </Col>
             <Col>
-              <p>Guests: {venueId.maxGuests}</p>
+              <div>Guests: {venueId.maxGuests}</div>
             </Col>
             <div className="separator mt-0"></div>
           </Row>
           <div>
-            <p>{venueId.description}</p>
+            <div>{venueId.description}</div>
           </div>
           <div className="separator mt-0"></div>
           <div>
-            <p>
+            <div>
               <small>Parking: {venueId.meta.parking ? "Yes" : "No"}</small>
-            </p>
-            <p>
+            </div>
+            <div>
               <small>
                 Pets: {venueId.meta.pets ? "Allowed" : "Not allowed"}
               </small>
-            </p>
-            <p>
+            </div>
+            <div>
               <small>
                 Wifi: {venueId.meta.wifi ? "Free" : "Not available"}
               </small>
-            </p>
+            </div>
           </div>
           <div className="separator mt-0"></div>
           <div>

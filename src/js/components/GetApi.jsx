@@ -50,8 +50,8 @@ function GetApi() {
             ) : null}
             <div className="mt-2">
               <h5>{venue.name}</h5>
-              <p>Max Guests: {venue.maxGuests}</p>
-              <p>Price: {venue.price}</p>
+              <div>Max Guests: {venue.maxGuests}</div>
+              <div>Price: {venue.price}</div>
             </div>
           </Link>
         </Col>

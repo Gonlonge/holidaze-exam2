@@ -7,6 +7,8 @@ import destination from "../../images/holiday-village.svg";
 import FilterMenu from "./FilterMenu";
 
 function Nav() {
+  const isLoggedIn = localStorage.getItem("accessToken");
+
   return (
     <div>
       <nav className="nav-container separator">
@@ -41,12 +43,21 @@ function Nav() {
             </Link>
           </li>
           <li className="ms-4">
-            <Link to="/LogIn">
-              <p className="none-margin-center">
-                <img className="navbar-icon" src={user} alt="user" />
-              </p>
-              Log In
-            </Link>
+            {isLoggedIn ? (
+              <Link to="/Profile">
+                <p className="none-margin-center">
+                  <img className="navbar-icon" src={user} alt="user" />
+                </p>
+                Profile
+              </Link>
+            ) : (
+              <Link to="/Login">
+                <p className="none-margin-center">
+                  <img className="navbar-icon" src={user} alt="user" />
+                </p>
+                Log In
+              </Link>
+            )}
           </li>
         </ul>
       </nav>
