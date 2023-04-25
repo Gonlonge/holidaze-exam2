@@ -72,6 +72,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button, Collapse, Form, FormControl } from "react-bootstrap";
 import filter from "../../images/filter.svg";
+import HighLowButton from "./HighLowButton";
 
 function FilterMenu() {
   const [open, setOpen] = useState(false);
@@ -140,22 +141,21 @@ function FilterMenu() {
               style={{ width: "30px", height: "30px" }}
             />
           </div>
-          <a>Filter</a>
+          <div className="filterButton">Filter</div>
         </Button>
         <Collapse in={open}>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li>
+            <div className="navbar-nav">
+              <div>
                 <Search />
-                {/* <a href="#">Home</a> */}
-              </li>
-              <li>
-                <p>Price High Low</p>
-              </li>
-              <li>
+              </div>
+
+              <HighLowButton />
+
+              <div>
                 <p>Calender?</p>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </Collapse>
       </div>
