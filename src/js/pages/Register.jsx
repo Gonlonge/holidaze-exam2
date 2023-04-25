@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { API_BASE, API_REGISTER } from "../ApiEndpoints";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 
@@ -109,9 +109,6 @@ function Register() {
             <Button variant="primary" type="submit">
               Register
             </Button>
-          </div>
-          <div className="mt-2">
-            <Link to="/Profile">CURRENT BUTTON PROFILE PAGE</Link>
           </div>
           {isError && <Alert variant="danger">Error loading data</Alert>}
         </Form>
