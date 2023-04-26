@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { API_BASE, API_PROFILE } from "../ApiEndpoints";
 import { Row, Col, Container, Modal, Button } from "react-bootstrap";
-import HandleLogout from "../components/HandleLogout";
 import profileImage from "../../images/cards.png";
 import Nav from "../components/Nav";
+import MenuProfile from "../components/MenuProfile";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -13,7 +13,6 @@ function Profile() {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-
         const name = localStorage.getItem("name");
         console.log(API_BASE + API_PROFILE + name);
         console.log(token);
@@ -84,18 +83,22 @@ function Profile() {
             <div className=" mt-0"></div>
           </Col>
         </Row>
+        <div>
+          <MenuProfile />
+        </div>
         <div className="separator">
           <div className="mt-5">
             <small>
-              <p>You have {user._count.bookings} bookings.</p>
+              <p>You have {user._count.bookings} bookings.</p>{" "}
+              <div className="separator mt-0"></div>
             </small>
+
             <small>
-              <p>You have {user._count.venues} venues.</p>
+              <p>You have {user._count.venues} venues.</p>{" "}
+              <div className="separator mt-0"></div>
             </small>
           </div>
         </div>
-        <HandleLogout />
-        <Nav />
 
         <Modal show={showModal} onHide={() => setShowModal(false)}>
           <Modal.Header closeButton>
@@ -116,8 +119,8 @@ function Profile() {
             </Button>
           </Modal.Footer>
         </Modal>
-        <div></div>
       </div>
+      <Nav />
     </Container>
   );
 }

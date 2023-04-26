@@ -4,6 +4,7 @@ import { API_BASE, API_REGISTER } from "../ApiEndpoints";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 
 function Register() {
+  console.log("Register her ?");
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [formData, setFormData] = useState({
@@ -11,11 +12,13 @@ function Register() {
     email: "",
     password: "",
     confirmPassword: "",
+    venueManager: false,
   });
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
+    console.log(formData);
     event.preventDefault();
     try {
       setIsError(false);
@@ -27,6 +30,7 @@ function Register() {
         },
         body: JSON.stringify(formData),
       });
+
       const json = await response.json();
       console.log(json); // Log the response data
       setIsLoading(false);
@@ -42,10 +46,11 @@ function Register() {
   };
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, type, checked } = event.target;
+    const newValue = type === "checkbox" ? checked : value;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: newValue,
     }));
   };
 
@@ -101,6 +106,16 @@ function Register() {
               placeholder="Confirm Password"
               value={formData.confirmPassword}
               name="confirmPassword"
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group controlId="formBasicCheckbox">
+            <Form.Check
+              type="checkbox"
+              label="Register as a Venue Manager"
+              checked={formData.venueManager}
+              name="venueManager"
               onChange={handleChange}
             />
           </Form.Group>

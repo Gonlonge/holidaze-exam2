@@ -13,16 +13,16 @@ const HighLowButton = () => {
   };
 
   return (
-    <div>
+    <div className="mt-2">
       <div>
         Price: {price}
-        <div className="mt-2">
+        <div className="mt-1">
           <Button
             variant="primary"
             onClick={handleHighClick}
             className="background-color-button"
           >
-            High
+            <small> High - Low</small>
           </Button>
         </div>{" "}
         <div className="mt-2">
@@ -31,7 +31,7 @@ const HighLowButton = () => {
             onClick={handleLowClick}
             className="background-color-button"
           >
-            Low
+            <small> Low - High</small>
           </Button>
         </div>
       </div>

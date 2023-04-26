@@ -38,21 +38,6 @@
   margin-top: 100px;
 }
 
-/* media query */
-
-/* This rule will only apply to screens with a maximum width of 768px, which is the size of a tablet or small laptop */
-
-// @media (max-width: 800px) {
-//   .header-desktop {
-//   }
-
-//   .header-mobile {
-//   }
-
-//   @media (min-width: 800px) {
-//   }
-// }
-
 // hambuger menu
 .navbar-collapse {
   position: relative;
@@ -84,4 +69,15 @@
   outline: none;
   box-shadow: none;
   color: colors.$dark-color;
+}
+
+/* calender */
+
+// .calendar .rbc-selected {
+//   background-color: #007bff;
+//   color: #fff;
+// }
+
+.background-color {
+  background-color: colors.$light-color;
 }

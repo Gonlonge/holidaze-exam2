@@ -9,12 +9,12 @@ function HandleLogout() {
 
   return (
     <Button
-      className="logout-button"
+      className="underline-button"
       variant="primary"
       onClick={handleLogout}
       aria-label="Logout"
     >
-      Log out
+      <small>Log out</small>
     </Button>
   );
 }
