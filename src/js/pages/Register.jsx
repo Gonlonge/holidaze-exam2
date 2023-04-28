@@ -77,7 +77,7 @@ function Register() {
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicEmail">
+          <Form.Group controlId="formBasicEmail" className="mt-2">
             <Form.Label>Email address</Form.Label>
             <Form.Control
               type="email"
@@ -88,7 +88,7 @@ function Register() {
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicPassword">
+          <Form.Group controlId="formBasicPassword" className="mt-2">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
@@ -99,7 +99,7 @@ function Register() {
             />
           </Form.Group>
 
-          <Form.Group controlId="formBasicConfirmPassword">
+          <Form.Group controlId="formBasicConfirmPassword" className="mt-2">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               type="password"
@@ -112,6 +112,7 @@ function Register() {
 
           <Form.Group controlId="formBasicCheckbox">
             <Form.Check
+              className="mt-2"
               type="checkbox"
               label="Register as a Venue Manager"
               checked={formData.venueManager}
@@ -119,8 +120,7 @@ function Register() {
               onChange={handleChange}
             />
           </Form.Group>
-
-          <div className="d-flex justify-content-center mt-2">
+          <div className="d-flex justify-content-center mt-4">
             <Button variant="primary" type="submit">
               Register
             </Button>

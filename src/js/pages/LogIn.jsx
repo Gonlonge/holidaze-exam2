@@ -64,7 +64,7 @@ function Login() {
               aria-label="Email address"
             />
           </Form.Group>
-          <Form.Group controlId="formBasicPassword">
+          <Form.Group className="mt-2" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"

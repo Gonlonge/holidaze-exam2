@@ -35,7 +35,7 @@
 }
 
 .footer-margin {
-  margin-top: 100px;
+  margin-top: 150px;
 }
 
 // hambuger menu
@@ -80,4 +80,13 @@
 
 .background-color {
   background-color: colors.$light-color;
+}
+
+/* input */
+
+.large-input {
+  height: 150px;
+  font-size: 18px;
+  padding: 10px;
+  vertical-align: top;
 }

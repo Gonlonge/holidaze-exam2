@@ -1,13 +1,13 @@
 import Nav from "../components/Nav";
 import { useState } from "react";
-import { API_BASE, API_MY_VENUE } from "../ApiEndpoints";
+import { API_BASE, API_VENUE } from "../ApiEndpoints";
 
 function CreateVenue() {
   const [venue, setVenue] = useState({
     name: "",
     description: "",
     price: 0,
-    maxGuests: 100,
+    maxGuests: 0,
     meta: {
       wifi: false,
       parking: false,
@@ -19,11 +19,10 @@ function CreateVenue() {
       city: "",
       zip: "",
       country: "",
-      continent: "",
-      lat: "",
-      lng: "",
     },
   });
+
+  const [mediaUrl, setMediaUrl] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,16 +30,16 @@ function CreateVenue() {
     const newVenue = {
       name: venue.name,
       description: venue.description,
-      media: [], // replace with an array of media URLs if necessary
+      media: mediaUrl ? [mediaUrl] : [], // include the media URL in the newVenue object
       price: parseInt(venue.price),
-      maxGuests: venue.maxGuests, // Add maxGuests to the newVenue object
-      rating: 0, // replace with a default rating if necessary
+      maxGuests: parseInt(venue.maxGuests), // Make sure maxGuests is a number
+      rating: 0,
       meta: venue.meta,
       location: venue.location,
     };
     const token = localStorage.getItem("accessToken");
-    console.log(token);
-    fetch(`${API_BASE}${API_MY_VENUE}`, {
+    console.log("Token:", token);
+    fetch(`${API_BASE}${API_VENUE}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -84,137 +83,166 @@ function CreateVenue() {
     }
   };
 
+  const handleMediaChange = (event) => {
+    setMediaUrl(event.target.value);
+  };
+
   return (
-    <div>
+    <div className="container">
       <Nav />
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={venue.name}
-          onChange={handleChange}
-        />
-        <label htmlFor="description">Description:</label>
-        <input
-          type="text"
-          id="description"
-          name="description"
-          value={venue.description}
-          onChange={handleChange}
-        />
+        <div className="form-group">
+          <label htmlFor="name">Title:</label>
+          <input
+            type="text"
+            className="form-control mt-1"
+            id="name"
+            name="name"
+            value={venue.name}
+            onChange={handleChange}
+          />
+        </div>
 
-        <label htmlFor="price">Price:</label>
-        <input
-          type="number"
-          id="price"
-          name="price"
-          value={venue.price}
-          onChange={handleChange}
-        />
+        <div className="form-group mt-2">
+          <label htmlFor="description  mt-1">Description:</label>
+          <textarea
+            className="form-control"
+            id="description"
+            name="description"
+            value={venue.description}
+            onChange={handleChange}
+            rows="5"
+          />
+        </div>
+        <div className="form-group  mt-2">
+          <label htmlFor="price">Price:</label>
+          <input
+            type="number"
+            className="form-control  mt-1"
+            id="price"
+            name="price"
+            value={venue.price}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group mt-2">
+          <label htmlFor="maxGuests">Max Guests:</label>
+          <input
+            type="number"
+            className="form-control mt-1"
+            id="maxGuests"
+            name="maxGuests"
+            value={venue.maxGuests}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group  mt-2">
+          <label htmlFor="wifi">Wi-Fi:</label>
+          <input
+            type="checkbox"
+            className="form-check-input  mx-2"
+            id="wifi"
+            name="wifi"
+            checked={venue.meta.wifi}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group mt-2">
+          <label htmlFor="parking">Parking:</label>
+          <input
+            type="checkbox"
+            className="form-check-input mx-2"
+            id="parking"
+            name="parking"
+            checked={venue.meta.parking}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group mt-2">
+          <label htmlFor="breakfast">Breakfast:</label>
+          <input
+            type="checkbox"
+            className="form-check-input  mx-2"
+            id="breakfast"
+            name="breakfast"
+            checked={venue.meta.breakfast}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group mt-2">
+          <label htmlFor="pets">Pets:</label>
+          <input
+            type="checkbox"
+            className="form-check-input  mx-2"
+            id="pets"
+            name="pets"
+            checked={venue.meta.pets}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group mt-5">
+          <label htmlFor="location.address">Address:</label>
+          <input
+            type="text"
+            className="form-control  mt-1"
+            id="location.address"
+            name="location.address"
+            value={venue.location.address}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group mt-2">
+          <label htmlFor="location.city">City:</label>
+          <input
+            type="text"
+            className="form-control  mt-1"
+            id="location.city"
+            name="location.city"
+            value={venue.location.city}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group mt-2">
+          <label htmlFor="location.zip">Zip:</label>
+          <input
+            type="text"
+            className="form-control mt-1"
+            id="location.zip"
+            name="location.zip"
+            value={venue.location.zip}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group mt-2">
+          <label htmlFor="location.country">Country:</label>
+          <input
+            type="text"
+            className="form-control mt-1"
+            id="location.country"
+            name="location.country"
+            value={venue.location.country}
+            onChange={handleChange}
+          />
+        </div>
 
-        <label htmlFor="wifi">Wi-Fi:</label>
-        <input
-          type="checkbox"
-          id="wifi"
-          name="wifi"
-          checked={venue.meta.wifi}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="parking">Parking:</label>
-        <input
-          type="checkbox"
-          id="parking"
-          name="parking"
-          checked={venue.meta.parking}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="breakfast">Breakfast:</label>
-        <input
-          type="checkbox"
-          id="breakfast"
-          name="breakfast"
-          checked={venue.meta.breakfast}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="pets">Pets:</label>
-        <input
-          type="checkbox"
-          id="pets"
-          name="pets"
-          checked={venue.meta.pets}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="location.address">Address:</label>
-        <input
-          type="text"
-          id="location.address"
-          name="location.address"
-          value={venue.location.address}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="location.city">City:</label>
-        <input
-          type="text"
-          id="location.city"
-          name="location.city"
-          value={venue.location.city}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="location.zip">Zip:</label>
-        <input
-          type="text"
-          id="location.zip"
-          name="location.zip"
-          value={venue.location.zip}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="location.country">Country:</label>
-        <input
-          type="text"
-          id="location.country"
-          name="location.country"
-          value={venue.location.country}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="location.continent">Continent:</label>
-        <input
-          type="text"
-          id="location.continent"
-          name="location.continent"
-          value={venue.location.continent}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="location.lat">Latitude:</label>
-        <input
-          type="text"
-          id="location.lat"
-          name="location.lat"
-          value={venue.location.lat}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="location.lng">Longitude:</label>
-        <input
-          type="text"
-          id="location.lng"
-          name="location.lng"
-          value={venue.location.lng}
-          onChange={handleChange}
-        />
-
-        <button type="submit">Create Venue</button>
+        <div className="form-group mt-2">
+          <label htmlFor="mediaUrl">Media URL:</label>
+          <input
+            type="text"
+            className="form-control mt-1"
+            id="mediaUrl"
+            name="mediaUrl"
+            value={mediaUrl}
+            onChange={handleMediaChange}
+          />
+        </div>
+        <div className="mt-5 text-center mt-2">
+          <button type="submit" className="btn btn-primary">
+            Create Venue
+          </button>
+        </div>
       </form>
+      <div className="footer-margin"></div>
     </div>
   );
 }
