@@ -120,6 +120,7 @@ function Profile() {
           </Modal.Footer>
         </Modal>
       </div>
+      <div className="footer-margin"></div>
       <Nav />
     </Container>
   );

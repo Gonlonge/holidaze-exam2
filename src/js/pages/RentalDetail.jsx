@@ -1,7 +1,7 @@
-import { Row, Col, Container } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API_BASE, API_VENUE } from "../ApiEndpoints";
+import { Row, Col, Container } from "react-bootstrap";
 import Nav from "../components/Nav";
 
 function RentalDetail() {
@@ -13,7 +13,10 @@ function RentalDetail() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(API_BASE + API_VENUE + `/${id}`);
+        const response = await fetch(
+          API_BASE + API_VENUE + `/${id}?_bookings=true&_owner=true`
+        );
+
         const json = await response.json();
         console.log(json);
         setVenue(json);
@@ -55,8 +58,12 @@ function RentalDetail() {
           <div>
             <div>{venueId.description}</div>
           </div>
+          <div className="mt-2">Rating: {venueId.rating}</div>
           <div className="separator mt-0"></div>
           <div>
+            <div>
+              <small>breakfast: {venueId.meta.breakfast ? "Yes" : "No"}</small>
+            </div>
             <div>
               <small>Parking: {venueId.meta.parking ? "Yes" : "No"}</small>
             </div>
@@ -73,8 +80,23 @@ function RentalDetail() {
           </div>
           <div className="separator mt-0"></div>
           <div>
+            City: {venueId.location.city} {venueId.location.zip}
+          </div>
+          <div>
+            Address: {venueId.location.address} {venueId.location.country}
+          </div>
+          <div className="separator mt-0"></div>
+          <div>
+            <div>
+              <img src={venueId.owner.avatar} alt={`Avatar`} />
+
+              <div>{venueId.owner.email}</div>
+            </div>
+          </div>
+          <div className="mt-2 separator">
             {venueId.updated ? (
-              <div>
+              <div className="mt-2">
+                <div>Rating {venueId.rating}</div>
                 <small>
                   Last updated: {new Date(venueId.updated).toLocaleString()}
                 </small>

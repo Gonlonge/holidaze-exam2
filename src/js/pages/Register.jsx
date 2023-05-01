@@ -128,6 +128,7 @@ function Register() {
           {isError && <Alert variant="danger">Error loading data</Alert>}
         </Form>
       </div>
+      <div className="footer-margin"></div>
     </Container>
   );
 }

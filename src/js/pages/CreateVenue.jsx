@@ -55,6 +55,7 @@ function CreateVenue() {
       })
       .then((data) => {
         console.log("Success:", data);
+        window.location.replace("/");
       })
       .catch((error) => {
         console.error("Error:", error);

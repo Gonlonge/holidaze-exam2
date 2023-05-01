@@ -10,6 +10,8 @@
 
 # npm install react-burger-menu --save
 
+# npm install npm install react-datepicker --save
+
 <!-- TEST USER
 avatar
 :
