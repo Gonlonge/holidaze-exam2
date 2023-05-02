@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { API_BASE, API_VENUE } from "../ApiEndpoints";
 import { Row, Col, Container } from "react-bootstrap";
 import Nav from "../components/Nav";
+import BookingCalender from "../components/BookingCalender";
 
 function RentalDetail() {
   const [venueId, setVenue] = useState(null);
@@ -107,6 +108,7 @@ function RentalDetail() {
           </div>
         </Col>
       </Row>
+      <BookingCalender />
       <Nav />
       <div className="footer-margin"></div>
     </Container>
