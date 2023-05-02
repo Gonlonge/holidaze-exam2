@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { API_BASE, API_VENUE } from "../ApiEndpoints";
 import { Col, Row, Image } from "react-bootstrap";
+import star from "../../images/star.svg";
 
 export const SearchInput = ({ searchInput, handleSearchInputChange }) => {
   return (
@@ -97,9 +98,21 @@ function GetApi() {
                 </div>
               ) : null}
               <div className="mt-2 mb-5">
-                <h5>{venue.name}</h5>
-                <div>Max Guests: {venue.maxGuests}</div>
-                <div>Price: {venue.price}</div>
+                <Row>
+                  <Col>
+                    <div className="d-flex justify-content-between">
+                      <h5>{venue.name}</h5>
+
+                      <h5>
+                        <div></div>{" "}
+                        <img className="pb-2" src={star} alt="star" />{" "}
+                        {venue.rating}
+                      </h5>
+                    </div>
+                  </Col>
+                </Row>
+                <div>Guests: {venue.maxGuests}</div>
+                <div>Night: ${venue.price}</div>
               </div>
             </Link>
           </Col>

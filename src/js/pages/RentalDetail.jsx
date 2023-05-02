@@ -49,7 +49,7 @@ function RentalDetail() {
           <h1 className="mt-2">{venueId.name}</h1>
           <Row>
             <Col>
-              <div className="mt-2">Price: ${venueId.price} Night</div>
+              <div className="mt-2">${venueId.price} Night</div>
             </Col>
             <Col>
               <div className="mt-2">Guests: {venueId.maxGuests}</div>
@@ -81,18 +81,23 @@ function RentalDetail() {
           </div>
           <div className="separator mt-0"></div>
           <div>
+            <div>
+              <img
+                src={venueId.owner.avatar}
+                alt={`Avatar`}
+                className="rounded-image"
+              />
+              <small>
+                <div>{venueId.owner.email}</div>
+              </small>
+            </div>
+          </div>
+          <div className="separator mt-0"></div>
+          <div>
             City: {venueId.location.city} {venueId.location.zip}
           </div>
           <div>
             Address: {venueId.location.address} {venueId.location.country}
-          </div>
-          <div className="separator mt-0"></div>
-          <div>
-            <div>
-              <img src={venueId.owner.avatar} alt={`Avatar`} />
-
-              <div>{venueId.owner.email}</div>
-            </div>
           </div>
           <div className="mt-2 separator">
             {venueId.updated ? (

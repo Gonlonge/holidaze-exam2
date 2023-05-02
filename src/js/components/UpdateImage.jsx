@@ -73,3 +73,35 @@
 // };
 
 // export default UpdateImage;
+
+// import React, { useEffect, useState } from "react";
+// import { API_BASE, API_PROFILE } from "../ApiEndpoints";
+// import { getAuthToken } from "../getAuthToken";
+
+// function UpdateImage() {
+//   const [profiles, setProfiles] = useState([]);
+
+//   useEffect(() => {
+//     fetch(API_BASE + API_PROFILE, {
+//       headers: {
+//         Authorization: `Bearer ${getAuthToken()}`,
+//       },
+//     })
+//       .then((response) => response.json())
+//       .then((data) => setProfiles(data))
+//       .catch((error) => console.error(error));
+//   }, []);
+
+//   return (
+//     <div>
+//       {profiles.map((profile) => (
+//         <div key={profile.id}>
+//           <h2>{profile.name}</h2>
+//           <p>{profile.bio}</p>
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
+
+// export default UpdateImage;
