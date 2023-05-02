@@ -101,7 +101,7 @@ function Profile() {
         </div>
         <div />
 
-        {/* <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
           <Modal.Header closeButton>
             <Modal.Title>Upload New Image</Modal.Title>
           </Modal.Header>
@@ -119,7 +119,7 @@ function Profile() {
               Save
             </Button>
           </Modal.Footer>
-        </Modal> */}
+        </Modal>
       </div>
       <div className="footer-margin"></div>
       <Nav />
@@ -128,3 +128,5 @@ function Profile() {
 }
 
 export default Profile;
+
+// TODO PUT avatar Modal is not working
