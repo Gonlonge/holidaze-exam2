@@ -59,12 +59,12 @@ function RentalDetail() {
               <div className="mt-2">Guests: {venueId.maxGuests}</div>
             </Col>
           </Row>{" "}
-          <div className="separator mt-0"></div>
+          <div className="separator mt-2"></div>
           <div>
             <div>{venueId.description}</div>
           </div>
           <div className="mt-2">Rating: {venueId.rating}</div>
-          <div className="separator mt-0"></div>
+          <div className="separator "></div>
           <div>
             <div>
               <small>breakfast: {venueId.meta.breakfast ? "Yes" : "No"}</small>
@@ -83,7 +83,7 @@ function RentalDetail() {
               </small>
             </div>
           </div>
-          <div className="separator mt-0"></div>
+          <div className="separator"></div>
           <div>
             <div>
               <img
@@ -91,22 +91,26 @@ function RentalDetail() {
                 alt={`Avatar`}
                 className="rounded-image"
               />
-              <small>
+              {/* <small>
                 <div>{venueId.owner.email}</div>
-              </small>
+              </small> */}
             </div>
           </div>
-          <div className="separator mt-0"></div>
+          <div className="mt-1"></div>
+          {/* <div className="separator mt-0"></div> */}
           <div>
             City: {venueId.location.city} {venueId.location.zip}
           </div>
           <div>
             Address: {venueId.location.address} {venueId.location.country}
+          </div>{" "}
+          <div className="separator">
+            {" "}
+            <BookingCalender venueId={venueId.id} />
           </div>
-          <div className="mt-2 separator">
+          <div>
             {venueId.updated ? (
-              <div className="mt-2">
-                <div>Rating {venueId.rating}</div>
+              <div>
                 <small>
                   Last updated: {new Date(venueId.updated).toLocaleString()}
                 </small>
@@ -117,7 +121,6 @@ function RentalDetail() {
           </div>
         </Col>
       </Row>
-      <BookingCalender venueId={venueId.id} />
       <Nav />
       <div className="footer-margin"></div>
     </Container>

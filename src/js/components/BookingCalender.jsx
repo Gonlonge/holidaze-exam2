@@ -67,8 +67,8 @@ function BookingCalender({ venueId }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="dateFrom">From:</label>
+      <div className="form-group mt-3">
+        <label htmlFor="dateFrom">Check In:</label>
         <input
           type="date"
           className="form-control"
@@ -79,8 +79,8 @@ function BookingCalender({ venueId }) {
           required
         />
       </div>
-      <div className="form-group">
-        <label htmlFor="dateTo">To:</label>
+      <div className="form-group mt-2">
+        <label htmlFor="dateTo">Check Out:</label>
         <input
           type="date"
           className="form-control"
@@ -91,7 +91,7 @@ function BookingCalender({ venueId }) {
           required
         />
       </div>
-      <div className="form-group">
+      <div className="form-group mt-2">
         <label htmlFor="guests">Guests:</label>
         <input
           type="number"
@@ -103,7 +103,11 @@ function BookingCalender({ venueId }) {
           required
         />
       </div>
-      <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+      <button
+        type="submit"
+        className="btn btn-primary mt-4"
+        disabled={isSubmitting}
+      >
         {isSubmitting ? "Submitting..." : "Book Now"}
       </button>
       {isError && (
