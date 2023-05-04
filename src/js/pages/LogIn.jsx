@@ -6,14 +6,29 @@ import { API_BASE, API_LOGIN } from "../ApiEndpoints";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [validationErrors, setValidationErrors] = useState({});
   const [error, setError] = useState(null);
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (!email) {
+      errors.email = "Please enter your email address.";
+    }
+
+    if (!password) {
+      errors.password = "Please enter your password.";
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validate form fields
-    if (!email || !password) {
-      setError("Please fill out both email and password.");
+    if (!validateForm()) {
       return;
     }
 
@@ -61,8 +76,12 @@ function Login() {
               placeholder="name@stud.noroff.no"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              isInvalid={!!validationErrors.email}
               aria-label="Email address"
             />
+            <Form.Control.Feedback type="invalid">
+              {validationErrors.email}
+            </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mt-2" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
@@ -71,8 +90,12 @@ function Login() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              isInvalid={!!validationErrors.password}
               aria-label="Password"
             />
+            <Form.Control.Feedback type="invalid">
+              {validationErrors.password}
+            </Form.Control.Feedback>
             <div className="mt-1">
               <Link to="/register" className="small" aria-label="Register User">
                 Register User

@@ -4,6 +4,7 @@ import { Row, Col, Container, Modal, Button } from "react-bootstrap";
 import profileImage from "../../images/cards.png";
 import Nav from "../components/Nav";
 import MenuProfile from "../components/MenuProfile";
+import AvatarModal from "../components/AvatarModal";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -33,14 +34,37 @@ function Profile() {
     fetchUser();
   }, []);
 
+  const handleImageUpload = async (newAvatar) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+      const name = localStorage.getItem("name");
+      console.log(API_BASE + API_PROFILE + name + "/media");
+      const formData = new FormData();
+      formData.append("avatar", newAvatar);
+      const response = await fetch(API_BASE + API_PROFILE + name + "/media", {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+      console.log(response);
+      if (response.ok) {
+        const userData = await response.json();
+        console.log(userData);
+        setUser(userData);
+        setShowModal(false);
+      } else {
+        console.error("Error updating avatar:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error updating avatar:", error);
+    }
+  };
+
   if (!user) {
     return <div>Loading user data...</div>;
   }
-
-  const handleImageUpload = (event) => {
-    console.log("Image selected:", event.target.files[0]);
-    setShowModal(false);
-  };
 
   return (
     <Container>
@@ -89,33 +113,27 @@ function Profile() {
         <div className="separator">
           <div className="mt-5">
             <small>
-              <p>You have {user._count.bookings} bookings.</p>{" "}
+              <h5>You have {user._count.bookings} bookings.</h5>{" "}
               <div className="separator mt-0"></div>
             </small>
 
             <small>
-              <p>You have {user._count.venues} venues.</p>{" "}
+              <h5>You have {user._count.venues} venues.</h5>{" "}
               <div className="separator mt-0"></div>
             </small>
           </div>
-        </div>
+        </div>{" "}
         <div />
-
         <Modal show={showModal} onHide={() => setShowModal(false)}>
           <Modal.Header closeButton>
-            <Modal.Title>Upload New Image</Modal.Title>
+            <Modal.Title>Upload New Avatar</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <input type="file" accept="image/*" onChange={handleImageUpload} />
-          </Modal.Body>
+          <AvatarModal />
           <Modal.Footer>
             <Button variant="secondary" onClick={() => setShowModal(false)}>
               Cancel
             </Button>
-            <Button
-              variant="primary"
-              onClick={() => console.log("Save clicked")}
-            >
+            <Button variant="primary" onClick={handleImageUpload}>
               Save
             </Button>
           </Modal.Footer>
@@ -128,5 +146,3 @@ function Profile() {
 }
 
 export default Profile;
-
-// TODO PUT avatar Modal is not working

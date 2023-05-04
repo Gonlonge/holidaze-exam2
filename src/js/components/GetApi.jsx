@@ -91,7 +91,7 @@ function GetApi() {
               {venue.media.length > 0 ? (
                 <div className="ratio ratio-4x3">
                   <Image
-                    className="img-fluid"
+                    className="img-fluid rounded"
                     src={venue.media[0]}
                     alt={venue.name}
                   />

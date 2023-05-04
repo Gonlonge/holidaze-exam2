@@ -1,44 +1,123 @@
-import React from "react";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import React, { useState } from "react";
+import { API_BASE, API_BOOKINGS } from "../ApiEndpoints";
 
-const BookingCalender = ({
-  dateFrom,
-  setDateFrom,
-  dateTo,
-  setDateTo,
-  onBooking,
-}) => {
-  const handleDateFromChange = (date) => {
-    setDateFrom(date);
-    console.log("Selected dateFrom:", date);
+function BookingCalender({ venueId }) {
+  const [formData, setFormData] = useState({
+    dateFrom: "",
+    dateTo: "",
+    guests: 0,
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: name === "guests" ? parseInt(value, 10) : value,
+    }));
   };
 
-  const handleDateToChange = (date) => {
-    setDateTo(date);
-    console.log("Selected dateTo:", date);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    setIsError(false);
+    setSuccessMessage("");
+
+    const bookingData = {
+      ...formData,
+      venueId: venueId,
+    };
+
+    console.log("Booking data:", bookingData);
+
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      const response = await fetch(API_BASE + API_BOOKINGS, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(bookingData),
+        Authorization: `Bearer ${token}`,
+      });
+
+      if (response.ok) {
+        setSuccessMessage("Booking successful!");
+        setFormData({
+          dateFrom: "",
+          dateTo: "",
+          guests: 1,
+        });
+      } else {
+        const errorData = await response.json();
+        console.error("Error data:", errorData);
+        setIsError(true);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setIsError(true);
+    }
+
+    setIsSubmitting(false);
   };
 
   return (
-    <>
-      <label>Date From:</label>
-      <DatePicker
-        selected={dateFrom}
-        onChange={handleDateFromChange}
-        dateFormat="yyyy-MM-dd"
-      />
-
-      <label>Date To:</label>
-      <DatePicker
-        selected={dateTo}
-        onChange={handleDateToChange}
-        dateFormat="yyyy-MM-dd"
-      />
-
-      {/* Add the booking button */}
-      <button onClick={onBooking}>Book Now</button>
-    </>
+    <form onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="dateFrom">From:</label>
+        <input
+          type="date"
+          className="form-control"
+          id="dateFrom"
+          name="dateFrom"
+          value={formData.dateFrom}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="dateTo">To:</label>
+        <input
+          type="date"
+          className="form-control"
+          id="dateTo"
+          name="dateTo"
+          value={formData.dateTo}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <div className="form-group">
+        <label htmlFor="guests">Guests:</label>
+        <input
+          type="number"
+          className="form-control"
+          id="guests"
+          name="guests"
+          value={Number.isInteger(formData.guests) ? formData.guests : ""}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+        {isSubmitting ? "Submitting..." : "Book Now"}
+      </button>
+      {isError && (
+        <div className="alert alert-danger mt-3" role="alert">
+          There was an error submitting your booking. Please try again later.
+        </div>
+      )}
+      {successMessage && (
+        <div className="alert alert-success mt-3" role="alert">
+          {successMessage}
+        </div>
+      )}
+    </form>
   );
-};
+}
 
 export default BookingCalender;

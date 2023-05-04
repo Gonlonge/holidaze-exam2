@@ -43,7 +43,11 @@ function RentalDetail() {
     <Container>
       <Row>
         <Col xs={12} md={8}>
-          <img className="img-fluid" src={venueId.media} alt={venueId.media} />
+          <img
+            className="img-fluid rounded"
+            src={venueId.media}
+            alt={venueId.media}
+          />
         </Col>
         <Col xs={12} md={4}>
           <h1 className="mt-2">{venueId.name}</h1>
@@ -113,7 +117,7 @@ function RentalDetail() {
           </div>
         </Col>
       </Row>
-      <BookingCalender />
+      <BookingCalender venueId={venueId.id} />
       <Nav />
       <div className="footer-margin"></div>
     </Container>
