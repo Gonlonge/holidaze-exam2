@@ -120,7 +120,7 @@ function RentalDetail() {
             )}
           </div>
           <div className="mt-5">
-            <div className="mb-2">Not available</div>
+            <div className="mb-2">All Bookings</div>
             {venueId.bookings.map((booking) => (
               <div key={booking.id}>
                 <div>

@@ -21,6 +21,11 @@
   // border-radius: 5px;
 }
 
+// .small-img {
+//   max-height: 150px;
+//   max-width: 150px;
+// }
+
 /* Separator lines */
 
 .separator {
@@ -100,3 +105,12 @@
 //   border: 1px solid #ccc;
 //   border-radius: 5px;
 // }
+
+// Image
+
+.MyBookings {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  object-position: center;
+}

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { API_BASE, API_PROFILE } from "../ApiEndpoints";
-import { Row, Col, Container, Modal, Button } from "react-bootstrap";
+import { Row, Col, Container, Modal } from "react-bootstrap";
 import profileImage from "../../images/cards.png";
 import Nav from "../components/Nav";
 import MenuProfile from "../components/MenuProfile";
 import AvatarModal from "../components/AvatarModal";
+import MyVenues from "../components/MyVenues";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -110,33 +111,27 @@ function Profile() {
         <div>
           <MenuProfile />
         </div>
-        <div className="separator">
-          <div className="mt-5">
-            <small>
-              <h5>You have {user._count.bookings} bookings.</h5>{" "}
-              <div className="separator mt-0"></div>
-            </small>
 
-            <small>
-              <h5>You have {user._count.venues} venues.</h5>{" "}
-              <div className="separator mt-0"></div>
-            </small>
-          </div>
-        </div>{" "}
+        <div className="mt-5">
+          <small>
+            <h5>You have {user._count.bookings} bookings.</h5>{" "}
+            <div className="separator mt-0"></div>
+          </small>
+
+          <small>
+            <h5>My Venues:</h5> <div className="separator mt-0"></div>
+          </small>
+          <MyVenues />
+        </div>
         <div />
         <Modal show={showModal} onHide={() => setShowModal(false)}>
-          <Modal.Header closeButton>
-            <Modal.Title>Upload New Avatar</Modal.Title>
-          </Modal.Header>
-          <AvatarModal />
-          <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
-              Cancel
-            </Button>
-            <Button variant="primary" onClick={handleImageUpload}>
-              Save
-            </Button>
-          </Modal.Footer>
+          <Modal.Header closeButton></Modal.Header>
+          <div className="mt-4 d-flex justify-content-center align-items-center ">
+            <img className="img-fluid" src={user.avatar} />
+          </div>
+          <div className="mt-4">
+            <AvatarModal />
+          </div>
         </Modal>
       </div>
       <div className="footer-margin"></div>
