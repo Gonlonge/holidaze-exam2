@@ -46,17 +46,9 @@ function Profile() {
           <Col xs={12} md={8}>
             <div style={{ position: "relative" }}>
               {user.avatar ? (
-                <img
-                  className="rounded-image"
-                  src={user.avatar}
-                  alt={`Avatar for ${user.name}`}
-                />
+                <img className="rounded-image" src={user.avatar} alt="" />
               ) : (
-                <img
-                  className="rounded-image"
-                  src={profileImage}
-                  alt={`default Avatar ${user.name}`}
-                />
+                <img className="rounded-image" src={profileImage} alt="" />
               )}
             </div>
             <div>
@@ -99,7 +91,7 @@ function Profile() {
         <Modal show={showModal} onHide={() => setShowModal(false)}>
           <Modal.Header closeButton></Modal.Header>
           <div className="mt-4 d-flex justify-content-center align-items-center ">
-            <img className="img-fluid" src={user.avatar} />
+            <img className="img-fluid" src={user.avatar} alt="" />
           </div>
           <div className="mt-4">
             <AvatarModal />

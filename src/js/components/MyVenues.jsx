@@ -63,11 +63,7 @@ function MyVenues() {
     <div>
       {venues.map((venue) => (
         <div key={venue.id} className="mb-3 d-flex align-items-center">
-          <img
-            className="rounded MyBookings me-3"
-            src={venue.media}
-            alt={`media ${venue.media}`}
-          />
+          <img className="rounded MyBookings me-3" src={venue.media} alt="" />
           <div>
             <h5>{venue.name}</h5>
             <p>{venue.location.city}</p>
