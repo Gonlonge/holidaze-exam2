@@ -66,7 +66,7 @@ function MyVenues() {
           <img
             className="rounded MyBookings me-3"
             src={venue.media}
-            alt={venue.media}
+            alt={`media ${venue.media}`}
           />
           <div>
             <h5>{venue.name}</h5>

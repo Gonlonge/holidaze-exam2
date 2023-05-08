@@ -55,7 +55,7 @@ function Profile() {
                 <img
                   className="rounded-image"
                   src={profileImage}
-                  alt="Default avatar"
+                  alt={`default Avatar ${user.name}`}
                 />
               )}
             </div>
