@@ -35,34 +35,6 @@ function Profile() {
     fetchUser();
   }, []);
 
-  const handleImageUpload = async (newAvatar) => {
-    try {
-      const token = localStorage.getItem("accessToken");
-      const name = localStorage.getItem("name");
-      console.log(API_BASE + API_PROFILE + name + "/media");
-      const formData = new FormData();
-      formData.append("avatar", newAvatar);
-      const response = await fetch(API_BASE + API_PROFILE + name + "/media", {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
-      console.log(response);
-      if (response.ok) {
-        const userData = await response.json();
-        console.log(userData);
-        setUser(userData);
-        setShowModal(false);
-      } else {
-        console.error("Error updating avatar:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error updating avatar:", error);
-    }
-  };
-
   if (!user) {
     return <div>Loading user data...</div>;
   }
