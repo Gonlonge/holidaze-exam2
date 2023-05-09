@@ -1,13 +1,13 @@
 import Nav from "../components/Nav";
 import { Container } from "react-bootstrap";
-import GetApi from "../components/GetApi";
+import AllVenues from "../components/AllVenues";
 
 function Home() {
   return (
     <Container>
       <div>
         <Nav />
-        <GetApi />
+        <AllVenues />
       </div>
       <div className="footer-margin"></div>
     </Container>

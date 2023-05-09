@@ -21,7 +21,7 @@ export const SearchInput = ({ searchInput, handleSearchInputChange }) => {
   );
 };
 
-function GetApi() {
+function AllVenues() {
   const [venues, setVenues] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -122,4 +122,4 @@ function GetApi() {
   );
 }
 
-export default GetApi;
+export default AllVenues;

@@ -9,7 +9,6 @@ function MyVenues() {
 
   useEffect(() => {
     const getVenues = async () => {
-      console.log("Fetching venues...");
       const token = localStorage.getItem("accessToken");
       const name = localStorage.getItem("name");
       const url = API_BASE + API_PROFILE + name + "/venues";
@@ -20,7 +19,6 @@ function MyVenues() {
         },
       });
       if (response.ok) {
-        console.log("Venues fetched successfully!");
         const venues = await response.json();
         console.log("Venues:", venues);
         setVenues(venues);
@@ -58,7 +56,6 @@ function MyVenues() {
     }
   }
 
-  console.log("Rendering MyVenues component...");
   return (
     <div>
       {venues.map((venue) => (
