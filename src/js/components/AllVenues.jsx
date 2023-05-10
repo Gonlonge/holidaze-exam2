@@ -3,23 +3,7 @@ import { Link } from "react-router-dom";
 import { API_BASE, API_VENUE } from "../ApiEndpoints";
 import { Col, Row, Image } from "react-bootstrap";
 import star from "../../images/star.svg";
-
-export const SearchInput = ({ searchInput, handleSearchInputChange }) => {
-  return (
-    <div className="input-group mb-3">
-      <input
-        type="text"
-        className="form-control"
-        value={searchInput}
-        onChange={handleSearchInputChange}
-        placeholder="Search"
-      />
-      <button className="btn btn-outline-secondary" type="button">
-        Search
-      </button>
-    </div>
-  );
-};
+import SearchInput from "../components/search"; // Import SearchInput component
 
 function AllVenues() {
   const [venues, setVenues] = useState([]);
@@ -73,7 +57,7 @@ function AllVenues() {
   };
 
   return (
-    <>
+    <div>
       <SearchInput
         searchInput={searchInput}
         handleSearchInputChange={handleSearchInputChange}
@@ -105,7 +89,11 @@ function AllVenues() {
 
                       <h5>
                         <div></div>{" "}
-                        <img className="pb-2" src={star} alt="star" />{" "}
+                        <img
+                          className="pb-2 rating-star"
+                          src={star}
+                          alt="star"
+                        />{" "}
                         {venue.rating}
                       </h5>
                     </div>
@@ -118,7 +106,7 @@ function AllVenues() {
           </Col>
         ))}
       </Row>
-    </>
+    </div>
   );
 }
 

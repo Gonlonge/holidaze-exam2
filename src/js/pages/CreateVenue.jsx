@@ -238,7 +238,7 @@ function CreateVenue() {
           />
         </div>
         <div className="mt-5 text-center mt-2">
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary main-btn-color">
             Create Venue
           </button>
         </div>

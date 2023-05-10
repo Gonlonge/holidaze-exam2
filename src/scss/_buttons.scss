@@ -24,7 +24,16 @@
   text-decoration: underline;
 
   &:hover {
-    background-color: colors.$white-color;
+    background-color: colors.$light-color;
     color: colors.$dark-color;
   }
+}
+.main-btn-color {
+  background: linear-gradient(
+    to bottom right,
+    colors.$button-color-linear,
+    colors.$button-color
+  );
+  color: black;
+  border: none;
 }

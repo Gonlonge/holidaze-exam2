@@ -1,6 +1,5 @@
 import { API_BASE, API_PROFILE } from "../ApiEndpoints";
 import React, { useEffect, useState } from "react";
-// import { Button } from "react-bootstrap";
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -10,7 +9,7 @@ const Bookings = () => {
       try {
         const token = localStorage.getItem("accessToken");
         const name = localStorage.getItem("name");
-        const url = `${API_BASE}${API_PROFILE}${name}/bookings`;
+        const url = `${API_BASE}${API_PROFILE}${name}/bookings?_venue=true`;
         const response = await fetch(url, {
           method: "GET",
           headers: {
@@ -43,18 +42,24 @@ const Bookings = () => {
   };
 
   //
-
   return (
     <div>
       {bookings.map((booking) => (
-        <div key={booking.id}>
-          <p>
-            {formatDate(booking.dateFrom)} - {formatDate(booking.dateTo)}:{" "}
-            {booking.guests} guests
-          </p>
-          {/* <Button variant="danger" onClick={() => handleDelete(venue.id)}>
-      Delete
-    </Button> */}
+        <div key={booking.id} className="mb-3 d-flex align-items-center">
+          <img
+            className="rounded MyBookings me-3"
+            src={booking.venue.media}
+            alt=""
+          />
+          <div>
+            <h5>{booking.venue.name}</h5>
+            <p>{booking.venue.location.city}</p>
+            <p>${booking.venue.price}</p>
+            <p>
+              {formatDate(booking.dateFrom)} - {formatDate(booking.dateTo)}:{" "}
+              {booking.guests} guests
+            </p>
+          </div>
         </div>
       ))}
     </div>

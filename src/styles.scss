@@ -6,12 +6,6 @@
   max-width: 400px;
 }
 
-// .small-container {
-//   max-width: 860px;
-//   margin: 0px auto;
-//   padding: 0px 20px;
-// }
-
 /* Images */
 
 .responsive-img {
@@ -20,11 +14,6 @@
 
   // border-radius: 5px;
 }
-
-// .small-img {
-//   max-height: 150px;
-//   max-width: 150px;
-// }
 
 /* Separator lines */
 
@@ -79,11 +68,6 @@
 
 /* calender */
 
-// .calendar .rbc-selected {
-//   background-color: #007bff;
-//   color: #fff;
-// }
-
 .background-color {
   background-color: colors.$light-color;
 }
@@ -99,13 +83,6 @@
 
 //
 
-// .booking {
-//   margin: 10px 0;
-//   padding: 10px;
-//   border: 1px solid #ccc;
-//   border-radius: 5px;
-// }
-
 // Image
 
 .MyBookings {
@@ -113,4 +90,10 @@
   height: 170px;
   object-fit: cover;
   object-position: center;
+}
+
+// Stars
+
+.rating-star {
+  border: colors.$primary-color;
 }

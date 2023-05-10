@@ -6,7 +6,7 @@ import Nav from "../components/Nav";
 import MenuProfile from "../components/MenuProfile";
 import AvatarModal from "../components/AvatarModal";
 import MyVenues from "../components/MyVenues";
-import MyBookings from "../components/MyBookings";
+import Bookings from "../components/MyBookings";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -17,12 +17,13 @@ function Profile() {
       try {
         const token = localStorage.getItem("accessToken");
         const name = localStorage.getItem("name");
+        console.log(API_BASE + API_PROFILE + name);
+
         const response = await fetch(API_BASE + API_PROFILE + name, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-
         const userData = await response.json();
         console.log(userData);
         setUser(userData);
@@ -76,16 +77,11 @@ function Profile() {
         </div>
 
         <div className="mt-5">
-          <h5>My Bookings: {user._count.bookings}</h5>
+          <h5>You have {user._count.bookings} bookings.</h5>{" "}
           <div className="separator mt-0"></div>
-          <div className="mb-4">
-            <MyBookings />
-          </div>
-          <h5>My Venues: {user._count.venues}</h5>{" "}
-          <div className="separator mt-0"></div>
-          <div>
-            <MyVenues />
-          </div>
+          <Bookings />
+          <h5>My Venues:</h5> <div className="separator mt-0"></div>
+          <MyVenues />
         </div>
         <div />
         <Modal show={showModal} onHide={() => setShowModal(false)}>
