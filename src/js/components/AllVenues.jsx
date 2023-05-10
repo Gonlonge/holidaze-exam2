@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { API_BASE, API_VENUE } from "../ApiEndpoints";
 import { Col, Row, Image } from "react-bootstrap";
-import star from "../../images/star.svg";
+import star from "../../images/star.png";
 import SearchInput from "../components/search"; // Import SearchInput component
 
 function AllVenues() {
@@ -88,19 +88,15 @@ function AllVenues() {
                       <h5>{venue.name}</h5>
 
                       <h5>
-                        <div></div>{" "}
-                        <img
-                          className="pb-2 rating-star"
-                          src={star}
-                          alt="star"
-                        />{" "}
+                        <img className="pb-2" src={star} alt="star" />{" "}
                         {venue.rating}
                       </h5>
                     </div>
                   </Col>
                 </Row>
-                <div>Guests: {venue.maxGuests}</div>
-                <div>Night: ${venue.price}</div>
+                <p className="mb-0">{venue.location.city}</p>
+                <p className="mb-0">Guests: {venue.maxGuests}</p>
+                <p className="mb-0">Night: ${venue.price}</p>
               </div>
             </Link>
           </Col>

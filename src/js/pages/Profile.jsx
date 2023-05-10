@@ -77,10 +77,11 @@ function Profile() {
         </div>
 
         <div className="mt-5">
-          <h5>You have {user._count.bookings} bookings.</h5>{" "}
+          <h5 className="mb-2">You have {user._count.bookings} bookings.</h5>{" "}
           <div className="separator mt-0"></div>
           <Bookings />
-          <h5>My Venues:</h5> <div className="separator mt-0"></div>
+          <h5 className="mb-2">My Venues:</h5>{" "}
+          <div className="separator mt-0"></div>
           <MyVenues />
         </div>
         <div />
