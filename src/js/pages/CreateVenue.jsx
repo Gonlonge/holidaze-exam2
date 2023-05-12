@@ -1,6 +1,7 @@
 import Nav from "../components/Nav";
 import { useState } from "react";
 import { API_BASE, API_VENUE } from "../ApiEndpoints";
+import LoadingIndicator from "../components/LoadingIndicator";
 
 function CreateVenue() {
   const [venue, setVenue] = useState({
@@ -54,6 +55,7 @@ function CreateVenue() {
         return response.json();
       })
       .then((data) => {
+        <LoadingIndicator />;
         console.log("Success:", data);
         window.location.replace("/");
       })

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE, API_PROFILE } from "../ApiEndpoints";
 import { Container, Form, Button, Alert } from "react-bootstrap";
+import LoadingIndicator from "./LoadingIndicator";
 
 function AvatarModal() {
   const [isLoading, setIsLoading] = useState(false);
@@ -53,7 +54,11 @@ function AvatarModal() {
   };
 
   if (isLoading) {
-    return <div>Loading data</div>;
+    return (
+      <div>
+        <LoadingIndicator />
+      </div>
+    );
   }
 
   if (isError) {

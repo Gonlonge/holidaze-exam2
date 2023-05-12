@@ -7,6 +7,7 @@ import MenuProfile from "../components/MenuProfile";
 import AvatarModal from "../components/AvatarModal";
 import MyVenues from "../components/MyVenues";
 import Bookings from "../components/MyBookings";
+import LoadingIndicator from "../components/LoadingIndicator";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -36,7 +37,7 @@ function Profile() {
   }, []);
 
   if (!user) {
-    return <div>Loading user data...</div>;
+    return <LoadingIndicator />;
   }
 
   return (
@@ -77,10 +78,10 @@ function Profile() {
         </div>
 
         <div className="mt-5">
-          <h5 className="mb-2">You have {user._count.bookings} bookings.</h5>{" "}
+          <h5 className="mb-2">My Bookings: {user._count.bookings}</h5>{" "}
           <div className="separator mt-0"></div>
           <Bookings />
-          <h5 className="mb-2">My Venues:</h5>{" "}
+          <h5 className="mb-2">My Venues: {user._count.venues}</h5>{" "}
           <div className="separator mt-0"></div>
           <MyVenues />
         </div>

@@ -4,6 +4,7 @@ import { API_BASE, API_VENUE } from "../ApiEndpoints";
 import { Col, Row, Image } from "react-bootstrap";
 import star from "../../images/star.png";
 import SearchInput from "../components/search"; // Import SearchInput component
+import LoadingIndicator from "./LoadingIndicator";
 
 function AllVenues() {
   const [venues, setVenues] = useState([]);
@@ -33,7 +34,7 @@ function AllVenues() {
   }, []);
 
   if (isLoading) {
-    return <div>Loading data</div>;
+    return <LoadingIndicator />;
   }
 
   if (isError) {
@@ -67,7 +68,6 @@ function AllVenues() {
           <div key={`${name}-${index}`}>{name}</div>
         ))}
       </div>
-
       <Row>
         {filteredVenues.map((venue) => (
           <Col md={4} sm={6} key={venue.id}>

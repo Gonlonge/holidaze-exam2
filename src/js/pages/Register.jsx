@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE, API_REGISTER } from "../ApiEndpoints";
 import { Container, Form, Button, Alert } from "react-bootstrap";
+import LoadingIndicator from "../components/LoadingIndicator";
 
 function Register() {
   console.log("Register her ?");
@@ -86,7 +87,7 @@ function Register() {
   };
 
   if (isLoading) {
-    return <div>Loading data</div>;
+    return <LoadingIndicator />;
   }
 
   if (isError) {

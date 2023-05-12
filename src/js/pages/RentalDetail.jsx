@@ -4,6 +4,7 @@ import { API_BASE, API_VENUE } from "../ApiEndpoints";
 import { Row, Col, Container } from "react-bootstrap";
 import Nav from "../components/Nav";
 import BookingCalender from "../components/BookingCalender";
+import LoadingIndicator from "../components/LoadingIndicator";
 
 function RentalDetail() {
   const [venueId, setVenue] = useState(null);
@@ -32,7 +33,7 @@ function RentalDetail() {
   }, [id]);
 
   if (isLoading) {
-    return <div>Loading data...</div>;
+    return <LoadingIndicator />;
   }
 
   if (isError) {

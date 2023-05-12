@@ -11,6 +11,7 @@ import "./scss/_spaces.scss";
 import "./scss/_nav.scss";
 import "./scss/_modal.scss";
 import "./scss/_buttons.scss";
+import "./scss/_loading-indicator.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
