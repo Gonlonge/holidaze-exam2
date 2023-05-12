@@ -8,9 +8,11 @@ import AvatarModal from "../components/AvatarModal";
 import MyVenues from "../components/MyVenues";
 import Bookings from "../components/MyBookings";
 import LoadingIndicator from "../components/LoadingIndicator";
+import ErrorIndicator from "../components/ErrorIndicator";
 
 function Profile() {
   const [user, setUser] = useState(null);
+  const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -30,6 +32,7 @@ function Profile() {
         setUser(userData);
       } catch (error) {
         console.error("Error fetching user data:", error);
+        setError(error); // Set the error state
       }
     };
 
@@ -38,6 +41,9 @@ function Profile() {
 
   if (!user) {
     return <LoadingIndicator />;
+  }
+  if (error) {
+    return <ErrorIndicator />;
   }
 
   return (

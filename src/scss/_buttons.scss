@@ -37,3 +37,21 @@
   color: black;
   border: none;
 }
+
+.input-group {
+  position: relative;
+}
+
+.form-control {
+  padding-right: 30px; /* Adjust this value based on the button's width */
+}
+
+.search-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  border: none;
+  color: none;
+  background-color: transparent;
+}

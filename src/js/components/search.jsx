@@ -8,7 +8,7 @@ export const SearchInput = ({ searchInput, handleSearchInputChange }) => {
         className="form-control"
         value={searchInput}
         onChange={handleSearchInputChange}
-        placeholder="Search"
+        placeholder="Search..."
       />
       <button className="btn btn-outline-secondary" type="button">
         Search

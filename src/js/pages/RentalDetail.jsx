@@ -5,6 +5,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import Nav from "../components/Nav";
 import BookingCalender from "../components/BookingCalender";
 import LoadingIndicator from "../components/LoadingIndicator";
+import ErrorIndicator from "../components/ErrorIndicator";
 
 function RentalDetail() {
   const [venueId, setVenue] = useState(null);
@@ -37,7 +38,7 @@ function RentalDetail() {
   }
 
   if (isError) {
-    return <div>Error loading data.</div>;
+    return <ErrorIndicator />;
   }
 
   return (

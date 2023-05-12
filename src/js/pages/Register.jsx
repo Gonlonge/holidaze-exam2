@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { API_BASE, API_REGISTER } from "../ApiEndpoints";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import LoadingIndicator from "../components/LoadingIndicator";
+import ErrorIndicator from "../components/ErrorIndicator";
 
 function Register() {
   console.log("Register her ?");
@@ -89,9 +90,8 @@ function Register() {
   if (isLoading) {
     return <LoadingIndicator />;
   }
-
   if (isError) {
-    return <div>Error loading data</div>;
+    return <ErrorIndicator />;
   }
   return (
     <Container>

@@ -5,6 +5,7 @@ import { Col, Row, Image } from "react-bootstrap";
 import star from "../../images/star.png";
 import SearchInput from "../components/search"; // Import SearchInput component
 import LoadingIndicator from "./LoadingIndicator";
+import ErrorIndicator from "../components/LoadingIndicator";
 
 function AllVenues() {
   const [venues, setVenues] = useState([]);
@@ -38,7 +39,7 @@ function AllVenues() {
   }
 
   if (isError) {
-    return <div>Error loading data</div>;
+    return <ErrorIndicator />;
   }
 
   const filteredVenues = venues.filter((venue) =>

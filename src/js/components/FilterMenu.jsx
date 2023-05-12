@@ -81,9 +81,7 @@ function FilterMenu() {
               <div>
                 <Search />
               </div>
-
               <HighLowButton />
-
               <div>
                 <MyCalender />
               </div>
