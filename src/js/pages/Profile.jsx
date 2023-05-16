@@ -49,36 +49,36 @@ function Profile() {
   return (
     <Container>
       <div>
-        <Row>
-          <Col xs={12} md={8}>
-            <div style={{ position: "relative" }}>
-              {user.avatar ? (
-                <img className="rounded-image" src={user.avatar} alt="" />
-              ) : (
-                <img className="rounded-image" src={profileImage} alt="" />
-              )}
-            </div>
-            <div>
-              <small>
+        <div className="p-2">
+          <Row>
+            <Col xs={12} md={8}>
+              <div style={{ position: "relative" }}>
+                {user.avatar ? (
+                  <img className="rounded-image" src={user.avatar} alt="" />
+                ) : (
+                  <img className="rounded-image" src={profileImage} alt="" />
+                )}
+              </div>
+              <div>
                 <button
-                  className="edit-button"
+                  className="edit-button text-decoration-underline mb-3"
                   onClick={() => setShowModal(true)}
                 >
                   Edit
                 </button>
-              </small>
-            </div>
-          </Col>
-          <Col xs={12} md={4}>
-            <small className="mt-2">Welcome Back, {user.name}!</small>
-            <Row>
-              <Col>
-                <small>Email: {user.email}</small>
-              </Col>
-            </Row>
-            <div className=" mt-0"></div>
-          </Col>
-        </Row>
+              </div>
+            </Col>
+            <Col xs={12} md={4}>
+              <small className="mt-2">Welcome Back, {user.name}!</small>
+              <Row>
+                <Col>
+                  <small>Email: {user.email}</small>
+                </Col>
+              </Row>
+              <div className=" mt-0"></div>
+            </Col>
+          </Row>
+        </div>
         <div>
           <MenuProfile />
         </div>
@@ -94,7 +94,7 @@ function Profile() {
         <div />
         <Modal show={showModal} onHide={() => setShowModal(false)}>
           <Modal.Header closeButton></Modal.Header>
-          <div className="mt-4 d-flex justify-content-center align-items-center ">
+          <div className="d-flex justify-content-center align-items-center ">
             <img className="img-fluid" src={user.avatar} alt="" />
           </div>
           <div className="mt-4">

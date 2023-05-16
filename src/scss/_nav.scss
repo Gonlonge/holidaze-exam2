@@ -12,6 +12,7 @@
   height: 80px; /* adjust height as needed */
   z-index: 999;
   background-color: colors.$white-color;
+  opacity: 0.98;
 }
 
 .nav-list {
@@ -28,4 +29,44 @@
 
 .nav-list li:last-child {
   margin-right: 0;
+}
+
+.desktop-logo {
+  display: none;
+}
+
+/* Styles for screens with a minimum width of 968px */
+@media (min-width: 968px) {
+  body {
+    padding-top: 30px; /* Add padding to the top of the body to make space for the fixed navigation */
+  }
+  .nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 40px;
+    max-width: 1400px; /* Adjust the value as needed */
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid colors.$light-color;
+    opacity: 1;
+  }
+
+  .nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end; /* Aligns the items to the right */
+  }
+
+  .nav-list li {
+    margin-right: 3rem; /* increase margin between menu items */
+  }
+
+  .desktop-logo {
+    display: block;
+    margin-right: auto; /* Aligns the logo to the left */
+  }
 }

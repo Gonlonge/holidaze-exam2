@@ -77,14 +77,12 @@ function AvatarModal() {
           onChange={handleChange}
         />
       </Form.Group>
-      <div className="d-flex justify-content-center mt-4">
+      <div className="d-flex justify-content-center mt-4 mb-4">
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Update Avatar
         </Button>
       </div>
       {isError && <Alert variant="danger">Error loading data</Alert>}
-
-      <div className="footer-margin"></div>
     </Container>
   );
 }

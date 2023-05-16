@@ -19,7 +19,6 @@ function RentalDetail() {
         const response = await fetch(
           API_BASE + API_VENUE + `/${id}?_bookings=true&_owner=true`
         );
-
         const json = await response.json();
         console.log(json);
         setVenue(json);

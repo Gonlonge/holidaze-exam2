@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 
 import { API_BASE, API_PROFILE, API_VENUE } from "../ApiEndpoints";
+import { Link } from "react-router-dom";
 
 function MyVenues() {
   const [venues, setVenues] = useState([]);
@@ -68,6 +69,13 @@ function MyVenues() {
             <Button variant="danger" onClick={() => handleDelete(venue.id)}>
               Delete
             </Button>
+
+            <Link
+              className="btn btn-primary main-btn-color px-4 p-2 mx-3 "
+              to={`/EditVenue/${venue.id}`}
+            >
+              Edit
+            </Link>
           </div>
         </div>
       ))}

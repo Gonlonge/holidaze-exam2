@@ -54,6 +54,7 @@ function Login() {
 
       // Store the accessToken in localStorage
       localStorage.setItem("accessToken", json.accessToken);
+      localStorage.setItem("name", json.name);
 
       console.log("Successful login!");
       // Redirect to profile page

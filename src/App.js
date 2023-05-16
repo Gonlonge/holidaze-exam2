@@ -9,6 +9,7 @@ import RentalDetail from "./js/pages/RentalDetail";
 import Profile from "./js/pages/Profile";
 import CreateVenue from "./js/pages/CreateVenue";
 import RegisterAsManager from "./js/pages/RegisterAsManager";
+import EditVenue from "./js/pages/EditVenue";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="RegisterAsManager" element={<RegisterAsManager />} />
           <Route path="Profile" element={<Profile />} />
           <Route path="RentalDetail/:id" element={<RentalDetail />} />
+          <Route path="EditVenue/:id" element={<EditVenue />} />
         </Route>
       </Routes>
     </div>
