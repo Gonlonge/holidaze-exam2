@@ -96,7 +96,6 @@ function EditVenue() {
 
   const handleChange = (event) => {
     const { name, value, checked, type } = event.target;
-    let newValue = value;
 
     if (type === "checkbox") {
       setVenue((prevState) => ({
