@@ -66,16 +66,21 @@ function MyVenues() {
             <h5>{venue.name}</h5>
             <p>{venue.location.city}</p>
             <p>${venue.price}</p>
-            <Button variant="danger" onClick={() => handleDelete(venue.id)}>
-              Delete
-            </Button>
-
             <Link
-              className="btn btn-primary main-btn-color px-4 p-2 mx-3 "
+              className="btn btn-primary main-btn-color px-4 p-2"
               to={`/EditVenue/${venue.id}`}
             >
               Edit
             </Link>
+            <div>
+              <Button
+                className="mt-2"
+                variant="danger"
+                onClick={() => handleDelete(venue.id)}
+              >
+                Delete
+              </Button>
+            </div>
           </div>
         </div>
       ))}

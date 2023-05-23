@@ -84,7 +84,7 @@ function Login() {
               {validationErrors.email}
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group className="mt-2" controlId="formBasicPassword">
+          <Form.Group className="mt-2 " controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
@@ -98,7 +98,11 @@ function Login() {
               {validationErrors.password}
             </Form.Control.Feedback>
             <div className="mt-1">
-              <Link to="/register" className="small" aria-label="Register User">
+              <Link
+                to="/register"
+                className="underline-button"
+                aria-label="Register User"
+              >
                 Register User
               </Link>
             </div>

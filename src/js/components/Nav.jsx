@@ -113,7 +113,7 @@ function Nav() {
                   alt="destination"
                 />
               </p>
-              Destination
+              Destinations
             </Link>
           </li>
           <li className="ms-5">

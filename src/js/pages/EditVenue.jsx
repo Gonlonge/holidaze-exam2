@@ -7,7 +7,7 @@ import ErrorIndicator from "../components/ErrorIndicator";
 
 function EditVenue() {
   const { id } = useParams();
-  const [media, setMedia] = useState("");
+  // const [media, setMedia] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
   const [venue, setVenue] = useState({
@@ -69,7 +69,7 @@ function EditVenue() {
       rating: 0,
       meta: venue.meta,
       location: venue.location,
-      media: [media],
+      // media: "media",
     };
 
     const updateVenue = async () => {
@@ -255,7 +255,7 @@ function EditVenue() {
             onChange={handleChange}
           />
         </div>
-
+        {/* 
         <div className="form-group mt-2">
           <label htmlFor="media">Media URL:</label>
           <input
@@ -266,7 +266,7 @@ function EditVenue() {
             value={media}
             onChange={handleChange}
           />
-        </div>
+        </div> */}
         <div className="mt-5 text-center mt-2">
           <button type="submit" className="btn btn-primary main-btn-color">
             Update Venue

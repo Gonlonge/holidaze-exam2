@@ -13,6 +13,7 @@ function AllVenues() {
   const [isError, setIsError] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [filteredProductNames, setFilteredProductNames] = useState([]);
+  // const [searched, setSearched] = useState(false); // New state to track if search button is clicked
 
   useEffect(() => {
     async function getData() {
@@ -34,6 +35,20 @@ function AllVenues() {
     getData();
   }, []);
 
+  const handleSearchInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const handleSearch = () => {
+    setSearched(true); // Set searched to true when search button is clicked
+
+    const filteredNames = venues
+      .map((venue) => venue.name)
+      .filter((name) => name.toLowerCase().includes(searchInput.toLowerCase()));
+
+    setFilteredProductNames(filteredNames);
+  };
+
   if (isLoading) {
     return <LoadingIndicator />;
   }
@@ -45,18 +60,6 @@ function AllVenues() {
   const filteredVenues = venues.filter((venue) =>
     venue.name.toLowerCase().includes(searchInput.toLowerCase())
   );
-
-  const handleSearchInputChange = (event) => {
-    setSearchInput(event.target.value);
-
-    const filteredNames = venues
-      .map((venue) => venue.name)
-      .filter((name) =>
-        name.toLowerCase().includes(event.target.value.toLowerCase())
-      );
-
-    setFilteredProductNames(filteredNames);
-  };
 
   return (
     <div>
