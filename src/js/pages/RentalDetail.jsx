@@ -6,6 +6,7 @@ import Nav from "../components/Nav";
 import BookingCalender from "../components/BookingCalender";
 import LoadingIndicator from "../components/LoadingIndicator";
 import ErrorIndicator from "../components/ErrorIndicator";
+import star from "../../images/star.png";
 
 function RentalDetail() {
   const [venueId, setVenue] = useState(null);
@@ -64,7 +65,10 @@ function RentalDetail() {
           <div>
             <div>{venueId.description}</div>
           </div>
-          <div className="mt-2">Rating: {venueId.rating}</div>
+          <div className="mt-2">
+            <img className="pb-2 pe-1" src={star} alt="" />
+            {venueId.rating}
+          </div>
           <div className="separator "></div>
           <div>
             <div>

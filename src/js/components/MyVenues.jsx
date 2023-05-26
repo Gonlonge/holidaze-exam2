@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-
 import { Button } from "react-bootstrap";
-
 import { API_BASE, API_PROFILE, API_VENUE } from "../ApiEndpoints";
 import { Link } from "react-router-dom";
 
@@ -61,7 +59,10 @@ function MyVenues() {
     <div>
       {venues.map((venue) => (
         <div key={venue.id} className="mb-3 d-flex align-items-center">
-          <img className="rounded MyBookings me-3" src={venue.media} alt="" />
+          <Link to={`/RentalDetail/${venue.id}`}>
+            <img className="rounded MyBookings me-3" src={venue.media} alt="" />
+          </Link>
+
           <div>
             <h5>{venue.name}</h5>
             <p>{venue.location.city}</p>

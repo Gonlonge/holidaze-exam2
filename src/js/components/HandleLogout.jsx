@@ -14,7 +14,7 @@ function HandleLogout() {
       onClick={handleLogout}
       aria-label="Logout"
     >
-      <small>Log out</small>
+      <p>Log out</p>
     </Button>
   );
 }

@@ -92,7 +92,7 @@ function AllVenues() {
                       <h5>{venue.name}</h5>
 
                       <h5>
-                        <img className="pb-2" src={star} alt="star" />{" "}
+                        <img className="pb-2 pe-1" src={star} alt="star" />
                         {venue.rating}
                       </h5>
                     </div>

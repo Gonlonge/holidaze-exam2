@@ -22,7 +22,7 @@ function MenuProfile() {
             <p>
               <Link className="underline-button" to="/CreateVenue">
                 Create New Venue
-              </Link>{" "}
+              </Link>
             </p>
           </div>
 
@@ -34,7 +34,7 @@ function MenuProfile() {
               </Link>
             </p>
           </div>
-          <div className="mt-4 pb-2 px-2">
+          <div className="mt-2 pb-2 px-2">
             <HandleLogout />
           </div>
         </div>

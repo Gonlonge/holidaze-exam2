@@ -65,7 +65,7 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import user from "../../images/person.svg";
 import home from "../../images/home.svg";
-import destination from "../../images/holiday-village.svg";
+import destinations from "../../images/holiday-village.svg";
 
 function Nav() {
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
@@ -105,12 +105,12 @@ function Nav() {
           </li>
 
           <li className="ms-5">
-            <Link to="/Destination">
+            <Link to="/Destinations">
               <p className="none-margin-center">
                 <img
                   className="navbar-icon"
-                  src={destination}
-                  alt="destination"
+                  src={destinations}
+                  alt="destinations"
                 />
               </p>
               Destinations

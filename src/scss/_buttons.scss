@@ -12,6 +12,15 @@
   position: relative;
 }
 
+a:-webkit-any-link {
+  cursor: pointer;
+
+  &:hover {
+    background-color: colors.$light-color;
+    color: colors.$dark-color;
+  }
+}
+
 .underline-button {
   color: colors.$dark-color;
   padding: 0;
