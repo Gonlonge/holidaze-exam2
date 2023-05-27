@@ -109,7 +109,7 @@ function EditVenue() {
         location: { ...prevState.location, [locationKey]: value },
       }));
     } else if (name === "media") {
-      setMedia(value); // Update media state separately
+      //setMedia(value); // Update media state separately
     } else {
       setVenue((prevState) => ({
         ...prevState,

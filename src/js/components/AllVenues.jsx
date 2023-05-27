@@ -12,41 +12,37 @@ function AllVenues() {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  const [filteredProductNames, setFilteredProductNames] = useState([]);
-  // const [searched, setSearched] = useState(false); // New state to track if search button is clicked
+  const [filteredProductNames] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const limit = 12;
+  const [hasMore, setHasMore] = useState(true);
+
+  const handleLoadMore = async () => {
+    try {
+      setIsLoading(false);
+      const response = await fetch(
+        `${API_BASE}${API_VENUE}?offset=${offset}&limit=${limit}`
+      );
+      const json = await response.json();
+      if (!Array.isArray(json) || json.length === 0) {
+        setHasMore(false);
+        return;
+      }
+      setVenues((prevVenues) => [...prevVenues, ...json]);
+      setOffset((prevOffset) => prevOffset + limit);
+    } catch (error) {
+      setIsError(true);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    async function getData() {
-      try {
-        setIsError(false);
-        setIsLoading(true);
-        const response = await fetch(API_BASE + API_VENUE);
-        console.log(response);
-        const json = await response.json();
-        console.log(json);
-        setVenues(json);
-        setIsLoading(false);
-      } catch (error) {
-        setIsLoading(false);
-        setIsError(true);
-      }
-    }
-
-    getData();
+    handleLoadMore();
   }, []);
 
   const handleSearchInputChange = (event) => {
     setSearchInput(event.target.value);
-  };
-
-  const handleSearch = () => {
-    setSearched(true); // Set searched to true when search button is clicked
-
-    const filteredNames = venues
-      .map((venue) => venue.name)
-      .filter((name) => name.toLowerCase().includes(searchInput.toLowerCase()));
-
-    setFilteredProductNames(filteredNames);
   };
 
   if (isLoading) {
@@ -106,6 +102,16 @@ function AllVenues() {
           </Col>
         ))}
       </Row>
+      {hasMore && (
+        <div className="d-flex justify-content-center mt-3">
+          <button
+            className="btn btn-primary main-btn-color"
+            onClick={handleLoadMore}
+          >
+            View More
+          </button>
+        </div>
+      )}
     </div>
   );
 }

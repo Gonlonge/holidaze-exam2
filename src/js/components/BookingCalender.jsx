@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { API_BASE, API_BOOKINGS } from "../ApiEndpoints";
+import { API_BASE, API_BOOKINGS, API_VENUE } from "../ApiEndpoints";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function BookingCalender({ venueId }) {
   const [formData, setFormData] = useState({
@@ -11,13 +13,14 @@ function BookingCalender({ venueId }) {
   const [isError, setIsError] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [bookedDates, setBookedDates] = useState([]);
+  const [maxCheckOutDate, setMaxCheckOutDate] = useState(null);
 
   useEffect(() => {
     const fetchBookedDates = async () => {
       try {
         const token = localStorage.getItem("accessToken");
         const response = await fetch(
-          API_BASE + API_BOOKINGS + `?venueId=${venueId}`,
+          API_BASE + API_VENUE + `/${venueId}?_bookings=true&_owner=true`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -27,7 +30,13 @@ function BookingCalender({ venueId }) {
 
         if (response.ok) {
           const bookedData = await response.json();
-          setBookedDates(bookedData);
+
+          // Sort bookings by dateFrom
+          bookedData.bookings.sort(
+            (a, b) => new Date(a.dateFrom) - new Date(b.dateFrom)
+          );
+
+          setBookedDates(bookedData.bookings);
         }
       } catch (error) {
         console.error("Error:", error);
@@ -37,24 +46,30 @@ function BookingCalender({ venueId }) {
     fetchBookedDates();
   }, [venueId]);
 
+  const handleCheckInChange = (date) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      dateFrom: date,
+    }));
+
+    // Find the next booked date after the selected date
+    const nextBookedDate = bookedDates.find(
+      (booking) => new Date(booking.dateFrom) > date
+    );
+
+    if (nextBookedDate) {
+      setMaxCheckOutDate(new Date(nextBookedDate.dateFrom));
+    } else {
+      setMaxCheckOutDate(null);
+    }
+  };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: name === "guests" ? parseInt(value, 10) : value,
     }));
-  };
-
-  const isDateBooked = (date) => {
-    return bookedDates.some((booking) => {
-      const startDate = new Date(booking.dateFrom);
-      const endDate = new Date(booking.dateTo);
-      return date >= startDate && date <= endDate;
-    });
-  };
-
-  const disabledDates = (date) => {
-    return isDateBooked(date) ? { disabled: true } : {};
   };
 
   const handleSubmit = async (event) => {
@@ -106,28 +121,32 @@ function BookingCalender({ venueId }) {
     <form onSubmit={handleSubmit}>
       <div className="form-group mt-3">
         <label htmlFor="dateFrom">Check In:</label>
-        <input
-          type="date"
-          className="form-control"
-          id="dateFrom"
-          name="dateFrom"
-          value={formData.dateFrom}
-          onChange={handleInputChange}
-          required
-          {...disabledDates(new Date(formData.dateFrom))}
+        <DatePicker
+          selected={formData.dateFrom}
+          minDate={new Date()}
+          excludeDates={bookedDates.map(
+            (booking) => new Date(booking.dateFrom)
+          )}
+          onChange={handleCheckInChange}
+          className="form-control" // Add the desired class for styling
         />
       </div>
       <div className="form-group mt-2">
         <label htmlFor="dateTo">Check Out:</label>
-        <input
-          type="date"
-          className="form-control"
-          id="dateTo"
-          name="dateTo"
-          value={formData.dateTo}
-          onChange={handleInputChange}
-          required
-          {...disabledDates(new Date(formData.dateTo))}
+        <DatePicker
+          selected={formData.dateTo}
+          excludeDates={bookedDates.map(
+            (booking) => new Date(booking.dateFrom)
+          )}
+          minDate={formData.dateFrom || new Date()}
+          maxDate={maxCheckOutDate}
+          onChange={(date) =>
+            setFormData((prevFormData) => ({
+              ...prevFormData,
+              dateTo: date,
+            }))
+          }
+          className="form-control" // Add the desired class for styling
         />
       </div>
       <div className="form-group mt-2">

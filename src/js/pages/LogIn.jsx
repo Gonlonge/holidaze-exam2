@@ -108,7 +108,12 @@ function Login() {
             </div>
           </Form.Group>
           <div className="d-flex justify-content-center mt-2">
-            <Button variant="primary" type="submit" aria-label="Login">
+            <Button
+              className="btn btn-primary main-btn-color"
+              variant="primary"
+              type="submit"
+              aria-label="Login"
+            >
               Login
             </Button>
           </div>

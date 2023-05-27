@@ -37,8 +37,8 @@ function Register() {
 
     if (!formData.password) {
       errors.password = "Please enter a password";
-    } else if (formData.password.length < 6) {
-      errors.password = "Password must be at least 6 characters long";
+    } else if (formData.password.length < 8) {
+      errors.password = "Password must be at least 8 characters long";
     }
 
     if (formData.password !== formData.confirmPassword) {
@@ -180,7 +180,11 @@ function Register() {
             />
           </Form.Group>
           <div className="d-flex justify-content-center mt-4">
-            <Button variant="primary" type="submit">
+            <Button
+              className="btn btn-primary main-btn-color"
+              variant="primary"
+              type="submit"
+            >
               Register
             </Button>
           </div>

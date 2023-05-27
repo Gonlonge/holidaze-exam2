@@ -1,23 +1,19 @@
-import { useState } from "react";
 import HandleLogout from "../components/HandleLogout";
 import { Link } from "react-router-dom";
-import filter from "../../images/filter.svg";
+import { updateVenueManagerStatus } from "../ApiCalls";
 
-function MenuProfile() {
-  const [showMenu, setShowMenu] = useState(false);
+function MenuProfile({ isVenueManager }) {
+  const registerAsManager = async () => {
+    const result = await updateVenueManagerStatus();
+    if (result) {
+      window.location.reload();
+    }
+  };
+
   return (
     <div>
-      <button
-        className="background-color-button mt-3 mb-2 underline-button"
-        onClick={() => setShowMenu(!showMenu)}
-      >
-        <h6>
-          <img className="navbar-icon me-1 mb-1 " src={filter} alt="filter" />
-          View More
-        </h6>
-      </button>
-      {showMenu && (
-        <div className="background-color pt-2">
+      <div className="background-color pt-2">
+        {isVenueManager && (
           <div className="mt-2 ps-2">
             <p>
               <Link className="underline-button" to="/CreateVenue">
@@ -25,20 +21,21 @@ function MenuProfile() {
               </Link>
             </p>
           </div>
+        )}
 
+        {!isVenueManager && (
           <div className="mt-2 ps-2">
-            {" "}
             <p>
-              <Link className="underline-button" to="/RegisterAsManager">
+              <Link className="underline-button" onClick={registerAsManager}>
                 Register As Manager
               </Link>
             </p>
           </div>
-          <div className="mt-2 pb-2 px-2">
-            <HandleLogout />
-          </div>
+        )}
+        <div className="mt-2 pb-2 px-2">
+          <HandleLogout />
         </div>
-      )}
+      </div>
     </div>
   );
 }

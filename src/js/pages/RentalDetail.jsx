@@ -124,39 +124,7 @@ function RentalDetail() {
               <div>Created: {new Date(venueId.created).toLocaleString()}</div>
             )}
           </div>
-          <div className="mt-5">
-            <div className="mb-2">All Bookings</div>
-            {venueId.bookings.map((booking) => (
-              <div key={booking.id}>
-                <div>
-                  From: {new Date(booking.dateFrom).toLocaleDateString()}
-                </div>
-                <div>To: {new Date(booking.dateTo).toLocaleDateString()}</div>
-                <hr />
-              </div>
-            ))}
-          </div>
-          {/* <div className="mt-5">
-            <h2>Bookings</h2>
-            {venueId.bookings.length === 0 ? (
-              <div>No bookings available</div>
-            ) : (
-              <div>
-                {venueId.bookings.map((booking) => (
-                  <div key={booking.id} className="booking">
-                    <div>
-                      <strong>From:</strong>{" "}
-                      {new Date(booking.dateFrom).toLocaleDateString()}
-                    </div>
-                    <div>
-                      <strong>To:</strong>{" "}
-                      {new Date(booking.dateTo).toLocaleDateString()}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div> */}
+          <div className="mt-5"></div>
         </Col>
       </Row>
       <Nav />

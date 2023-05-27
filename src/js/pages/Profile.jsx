@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_BASE, API_PROFILE } from "../ApiEndpoints";
 import { Row, Col, Container, Modal } from "react-bootstrap";
-import profileImage from "../../images/cards.png";
+import profileImage from "../../images/avatar-none.png";
 import Nav from "../components/Nav";
 import MenuProfile from "../components/MenuProfile";
 import AvatarModal from "../components/AvatarModal";
@@ -75,12 +75,19 @@ function Profile() {
                   <small>Email: {user.email}</small>
                 </Col>
               </Row>
+              {user.venueManager && (
+                <Row>
+                  <Col>
+                    <small>Venue Manager</small>
+                  </Col>
+                </Row>
+              )}
               <div className=" mt-0"></div>
             </Col>
           </Row>
         </div>
         <div>
-          <MenuProfile />
+          <MenuProfile isVenueManager={user.venueManager} />
         </div>
 
         <div className="mt-5">
