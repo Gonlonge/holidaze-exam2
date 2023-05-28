@@ -14,8 +14,10 @@
   border: 1px solid colors.$light-color;
   border-radius: 4px;
   cursor: pointer;
+  background-color: colors.$white-color; /* Replace with your desired background color */
 }
 
-.select-wrapper select:focus {
+.select-wrapper select:focus,
+.select-wrapper select:active {
   outline: none;
 }
