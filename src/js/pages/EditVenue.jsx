@@ -110,7 +110,6 @@ function EditVenue() {
     };
     updateVenue();
   };
-
   const handleMediaChange = (event) => {
     setMediaUrl(event.target.value);
   };
@@ -126,7 +125,7 @@ function EditVenue() {
     } else if (type === "range") {
       setVenue((prevVenue) => ({
         ...prevVenue,
-        rating: value,
+        [name]: value,
       }));
     } else if (name.startsWith("location")) {
       const locationKey = name.split(".")[1];
@@ -135,6 +134,9 @@ function EditVenue() {
         location: { ...prevState.location, [locationKey]: value },
       }));
     } else if (name === "media") {
+      // Handle media logic here if necessary
+      // For example, you can set the media value in the state
+      setMediaUrl(value);
     } else {
       setVenue((prevState) => ({
         ...prevState,
