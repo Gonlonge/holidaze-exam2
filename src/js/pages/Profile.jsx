@@ -91,12 +91,16 @@ function Profile() {
         </div>
 
         <div className="mt-5">
-          <h5 className="mb-2">My Bookings: {user._count.bookings}</h5>{" "}
-          <div className="separator mt-0"></div>
-          <Bookings />
-          <h5 className="mb-2">My Venues: {user._count.venues}</h5>{" "}
-          <div className="separator mt-0"></div>
-          <MyVenues />
+          {user && user._count && (
+            <div>
+              <h5 className="mb-2">My Bookings: {user._count.bookings}</h5>
+              <div className="separator mt-0"></div>
+              <Bookings />
+              <h5 className="mb-2">My Venues: {user._count.venues}</h5>
+              <div className="separator mt-0"></div>
+              <MyVenues />
+            </div>
+          )}
         </div>
         <div />
         <Modal show={showModal} onHide={() => setShowModal(false)}>

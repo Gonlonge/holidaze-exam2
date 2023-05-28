@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_BASE, API_REGISTER } from "../ApiEndpoints";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import LoadingIndicator from "../components/LoadingIndicator";
 import ErrorIndicator from "../components/ErrorIndicator";
+import { signUp, signIn } from "../ApiCalls"; 
 
 function Register() {
   console.log("Register her ?");
@@ -52,27 +52,37 @@ function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-      try {
-        setIsError(false);
-        setIsLoading(true);
-        const response = await fetch(API_BASE + API_REGISTER, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
 
-        const json = await response.json();
-        console.log(json); // Log the response data
+      setIsError(false);
+      setIsLoading(true);
+
+      try { 
+        const response = await signUp(formData);
         setIsLoading(false);
-        if (response.ok) {
-          localStorage.setItem("token", json.token);
-          localStorage.setItem("name", json.name);
-          navigate("/LogIn"); // Redirect to the Profile page
+        if (response) {
+          localStorage.setItem("token", response.token);
+          localStorage.setItem("name", response.name);
+          try {
+            const res = await signIn(formData.email, formData.password);
+            if (!res) {
+              // Edge case: user is created but login fails, shouldn't happen.
+              setIsError(true);
+              return;
+            } else {
+              // Store the accessToken in localStorage
+              localStorage.setItem("accessToken", res.accessToken);
+              localStorage.setItem("name", res.name);
+              console.log("Successful login!");
+              // Redirect to profile page
+              navigate("/Profile");
+            }
+          } catch (error) {
+            setIsError(true);
+          }
+        } else {
+          window.alert('Something went wrong, please try again.');
         }
-      } catch (error) {
-        setIsLoading(false);
+      } catch {
         setIsError(true);
       }
     }

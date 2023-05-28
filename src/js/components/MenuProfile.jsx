@@ -1,3 +1,5 @@
+// Register as manager and create a Venue
+
 import HandleLogout from "../components/HandleLogout";
 import { Link } from "react-router-dom";
 import { updateVenueManagerStatus } from "../ApiCalls";

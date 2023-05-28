@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { API_BASE, API_VENUE } from "../ApiEndpoints";
 import { Col, Row, Image } from "react-bootstrap";
 import star from "../../images/star.png";
-import SearchInput from "../components/search"; // Import SearchInput component
+import SearchInput from "../components/search";
 import LoadingIndicator from "./LoadingIndicator";
 import ErrorIndicator from "../components/LoadingIndicator";
 
@@ -16,13 +16,33 @@ function AllVenues() {
   const [offset, setOffset] = useState(0);
   const limit = 12;
   const [hasMore, setHasMore] = useState(true);
+  const [sortOption, setSortOption] = useState("");
 
-  const handleLoadMore = async () => {
+  const handleLoadMore = async (sortOptionValue) => {
     try {
       setIsLoading(false);
-      const response = await fetch(
-        `${API_BASE}${API_VENUE}?offset=${offset}&limit=${limit}`
-      );
+      let url = `${API_BASE}${API_VENUE}?offset=${offset}&limit=${limit}`;
+
+      console.log("sortOption: " + sortOptionValue);
+      if (sortOptionValue && sortOptionValue.length > 0) {
+        if (sortOptionValue === "priceHighToLow") {
+          url = `${url}&sort=price&sortOrder=desc`;
+        } else if (sortOptionValue === "priceLowToHigh") {
+          url = `${url}&sort=price&sortOrder=asc`;
+        } else if (sortOptionValue === "rating") {
+          url = `${url}&sort=rating&sortOrder=desc`;
+        } else if (sortOptionValue === "maxGuests") {
+          url = `${url}&sort=maxGuests&sortOrder=desc`;
+        } else if (sortOptionValue === "name") {
+          url = `${url}&sort=name&sortOrder=asc`;
+        } else {
+          url = `${url}&sort=created&sortOrder=desc`;
+        }
+      } else {
+        url = `${url}&sort=created&sortOrder=desc`;
+      }
+
+      const response = await fetch(url);
       const json = await response.json();
       if (!Array.isArray(json) || json.length === 0) {
         setHasMore(false);
@@ -40,6 +60,16 @@ function AllVenues() {
   useEffect(() => {
     handleLoadMore();
   }, []);
+
+  const handleSortChange = (event) => {
+    console.log("handleSortChange");
+    // Clear venues and offset
+    setVenues([]);
+    setOffset(0);
+    // Set sort option
+    setSortOption(event.target.value);
+    handleLoadMore(event.target.value);
+  };
 
   const handleSearchInputChange = (event) => {
     setSearchInput(event.target.value);
@@ -59,10 +89,22 @@ function AllVenues() {
 
   return (
     <div>
-      <SearchInput
-        searchInput={searchInput}
-        handleSearchInputChange={handleSearchInputChange}
-      />
+      <div>
+        <SearchInput
+          searchInput={searchInput}
+          handleSearchInputChange={handleSearchInputChange}
+        />
+      </div>
+      <div className="select-wrapper">
+        <select id="sort" value={sortOption} onChange={handleSortChange}>
+          <option value="">Latest</option>
+          <option value="priceLowToHigh">Price (Low to High)</option>
+          <option value="priceHighToLow">Price (High to Low)</option>
+          <option value="name">Name</option>
+          <option value="rating">Rating</option>
+          <option value="maxGuests">Max Guests</option>
+        </select>
+      </div>
       <div>
         {filteredProductNames.map((name, index) => (
           <div key={`${name}-${index}`}>{name}</div>

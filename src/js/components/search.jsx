@@ -10,9 +10,6 @@ export const SearchInput = ({ searchInput, handleSearchInputChange }) => {
         onChange={handleSearchInputChange}
         placeholder="Search..."
       />
-      <button className="btn btn-outline-secondary" type="button">
-        Search
-      </button>
     </div>
   );
 };

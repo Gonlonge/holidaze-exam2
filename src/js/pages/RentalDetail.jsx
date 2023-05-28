@@ -96,13 +96,9 @@ function RentalDetail() {
                 alt={`Avatar`}
                 className="rounded-image"
               />
-              {/* <small>
-                <div>{venueId.owner.email}</div>
-              </small> */}
             </div>
           </div>
           <div className="mt-1"></div>
-          {/* <div className="separator mt-0"></div> */}
           <div>
             City: {venueId.location.city} {venueId.location.zip}
           </div>
@@ -128,7 +124,6 @@ function RentalDetail() {
         </Col>
       </Row>
       <Nav />
-
       <div className="footer-margin"></div>
     </Container>
   );

@@ -1,3 +1,5 @@
+// Avatar image
+
 import React from "react";
 
 const UserAvatar = (props) => {

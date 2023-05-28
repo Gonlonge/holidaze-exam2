@@ -1,10 +1,12 @@
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function HandleLogout() {
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
-    // Add any additional clean up logic here, such as clearing user data from state
-    window.location.href = "./"; // Redirect to the home page
+    navigate("/"); // Redirect to the home page
   };
 
   return (

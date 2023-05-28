@@ -1,3 +1,5 @@
+// Loader
+
 function LoadingIndicator() {
   return (
     <div className="loading-container">

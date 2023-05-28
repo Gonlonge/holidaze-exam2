@@ -1,3 +1,5 @@
+// Bookings at profile page
+
 import { API_BASE, API_PROFILE } from "../ApiEndpoints";
 import React, { useEffect, useState } from "react";
 
@@ -41,7 +43,6 @@ const Bookings = () => {
     });
   };
 
-  //
   return (
     <div>
       {bookings.map((booking) => (

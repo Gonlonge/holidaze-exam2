@@ -1,20 +1,36 @@
 import Nav from "../components/Nav";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { API_BASE, API_VENUE } from "../ApiEndpoints";
 import LoadingIndicator from "../components/LoadingIndicator";
 import ErrorIndicator from "../components/ErrorIndicator";
 
+function Slider({ value, min, max, step, onChange }) {
+  return (
+    <input
+      type="range"
+      className="form-range"
+      min={min}
+      max={max}
+      step={step}
+      value={value}
+      onChange={onChange}
+    />
+  );
+}
+
 function EditVenue() {
   const { id } = useParams();
-  // const [media, setMedia] = useState("");
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+
   const [venue, setVenue] = useState({
     name: "",
     description: "",
     price: 0,
     maxGuests: 0,
+    rating: 0,
     meta: {
       wifi: false,
       parking: false,
@@ -28,6 +44,7 @@ function EditVenue() {
       country: "",
     },
   });
+  const [mediaUrl, setMediaUrl] = useState("");
 
   useEffect(() => {
     async function fetchData() {
@@ -36,6 +53,7 @@ function EditVenue() {
         const json = await response.json();
         console.log(json);
         setVenue(json);
+        setMediaUrl(json.media[0]);
         setIsLoading(false);
       } catch (error) {
         setIsError(true);
@@ -60,16 +78,15 @@ function EditVenue() {
     const token = localStorage.getItem("accessToken");
     console.log("Token:", token);
 
-    // TODO: Implement loading indicator
     const updatedVenue = {
       name: venue.name,
       description: venue.description,
       price: parseInt(venue.price),
-      maxGuests: parseInt(venue.maxGuests), // Make sure maxGuests is a number
-      rating: 0,
+      maxGuests: parseInt(venue.maxGuests),
+      rating: parseInt(venue.rating),
       meta: venue.meta,
       location: venue.location,
-      // media: "media",
+      media: mediaUrl ? [mediaUrl] : [],
     };
 
     const updateVenue = async () => {
@@ -86,12 +103,16 @@ function EditVenue() {
         const json = await response.json();
         console.log(json);
         // Redirect to profile page
-        window.location.href = "/Profile";
+        navigate("/Profile");
       } catch (error) {
         console.log(error);
       }
     };
     updateVenue();
+  };
+
+  const handleMediaChange = (event) => {
+    setMediaUrl(event.target.value);
   };
 
   const handleChange = (event) => {
@@ -102,6 +123,11 @@ function EditVenue() {
         ...prevState,
         meta: { ...prevState.meta, [name]: checked },
       }));
+    } else if (type === "range") {
+      setVenue((prevVenue) => ({
+        ...prevVenue,
+        rating: value,
+      }));
     } else if (name.startsWith("location")) {
       const locationKey = name.split(".")[1];
       setVenue((prevState) => ({
@@ -109,7 +135,6 @@ function EditVenue() {
         location: { ...prevState.location, [locationKey]: value },
       }));
     } else if (name === "media") {
-      //setMedia(value); // Update media state separately
     } else {
       setVenue((prevState) => ({
         ...prevState,
@@ -164,6 +189,24 @@ function EditVenue() {
             id="maxGuests"
             name="maxGuests"
             value={venue.maxGuests}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group mt-2">
+          <label htmlFor="rating">Rating:</label>
+          <Slider
+            value={venue.rating}
+            min={0}
+            max={5}
+            step={1}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            className="form-control mt-1"
+            id="rating"
+            name="rating"
+            value={venue.rating}
             onChange={handleChange}
           />
         </div>
@@ -255,18 +298,17 @@ function EditVenue() {
             onChange={handleChange}
           />
         </div>
-        {/* 
         <div className="form-group mt-2">
-          <label htmlFor="media">Media URL:</label>
+          <label htmlFor="mediaUrl">Media URL:</label>
           <input
             type="text"
             className="form-control mt-1"
-            id="media"
-            name="media"
-            value={media}
-            onChange={handleChange}
+            id="mediaUrl"
+            name="mediaUrl"
+            value={mediaUrl}
+            onChange={handleMediaChange}
           />
-        </div> */}
+        </div>
         <div className="mt-5 text-center mt-2">
           <button type="submit" className="btn btn-primary main-btn-color">
             Update Venue

@@ -1,70 +1,9 @@
-// import React from "react";
-// import { Link } from "react-router-dom";
-// import Header from "../components/Header";
-// import user from "../../images/person.svg";
-// import home from "../../images/home.svg";
-// import destination from "../../images/holiday-village.svg";
+// Navbar
 
-// function Nav() {
-//   const isLoggedIn = localStorage.getItem("accessToken");
-
-//   return (
-//     <div>
-//       <nav className="nav-container separator">
-//         <div className="desktop-logo">
-//           <Header />
-//         </div>
-//         <ul className="nav-list">
-//           <li>
-//             <Link to="/">
-//               <p className="none-margin-center">
-//                 <img className="navbar-icon" src={home} alt="home" />
-//               </p>
-//               Home
-//             </Link>
-//           </li>
-
-//           <li className="ms-5">
-//             <Link to="/Destination">
-//               <p className="none-margin-center">
-//                 <img
-//                   className="navbar-icon"
-//                   src={destination}
-//                   alt="destination"
-//                 />
-//               </p>
-//               Destination
-//             </Link>
-//           </li>
-//           <li className="ms-5">
-//             {isLoggedIn ? (
-//               <Link to="/Profile">
-//                 <p className="none-margin-center">
-//                   <img className="navbar-icon" src={user} alt="user" />
-//                 </p>
-//                 Profile
-//               </Link>
-//             ) : (
-//               <Link to="/Login">
-//                 <p className="none-margin-center">
-//                   <img className="navbar-icon" src={user} alt="user" />
-//                 </p>
-//                 Log In
-//               </Link>
-//             )}
-//           </li>
-//         </ul>
-//       </nav>
-//     </div>
-//   );
-// }
-
-// export default Nav;
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import user from "../../images/person.svg";
-import home from "../../images/home.svg";
 import destinations from "../../images/holiday-village.svg";
 
 function Nav() {
@@ -98,22 +37,13 @@ function Nav() {
           <li>
             <Link to="/">
               <p className="none-margin-center">
-                <img className="navbar-icon" src={home} alt="home" />
-              </p>
-              Home
-            </Link>
-          </li>
-
-          <li className="ms-5">
-            <Link to="/Destinations">
-              <p className="none-margin-center">
                 <img
                   className="navbar-icon"
                   src={destinations}
                   alt="destinations"
                 />
               </p>
-              Destinations
+              destinations
             </Link>
           </li>
           <li className="ms-5">

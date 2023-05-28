@@ -13,6 +13,7 @@ import "./scss/_modal.scss";
 import "./scss/_buttons.scss";
 import "./scss/_loading-indicator.scss";
 import "./scss/_error-indicator.scss";
+import "./scss/_filter-menu.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -1,13 +1,30 @@
 import Nav from "../components/Nav";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { API_BASE, API_VENUE } from "../ApiEndpoints";
 import LoadingIndicator from "../components/LoadingIndicator";
 
+function Slider({ value, min, max, step, onChange }) {
+  return (
+    <input
+      type="range"
+      className="form-range"
+      min={min}
+      max={max}
+      step={step}
+      value={value}
+      onChange={onChange}
+    />
+  );
+}
+
 function CreateVenue() {
+  const navigate = useNavigate();
   const [venue, setVenue] = useState({
     name: "",
     description: "",
     price: 0,
+    rating: 0,
     maxGuests: 0,
     meta: {
       wifi: false,
@@ -34,7 +51,7 @@ function CreateVenue() {
       media: mediaUrl ? [mediaUrl] : [], // include the media URL in the newVenue object
       price: parseInt(venue.price),
       maxGuests: parseInt(venue.maxGuests), // Make sure maxGuests is a number
-      rating: 0,
+      rating: parseInt(venue.rating),
       meta: venue.meta,
       location: venue.location,
     };
@@ -58,7 +75,7 @@ function CreateVenue() {
       .then((data) => {
         <LoadingIndicator />;
         console.log("Success:", data);
-        window.location.replace("/");
+        navigate("/");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -68,10 +85,17 @@ function CreateVenue() {
   const handleChange = (event) => {
     const { name, value, checked, type } = event.target;
 
+    console.log("Name:", name);
+
     if (type === "checkbox") {
       setVenue((prevState) => ({
         ...prevState,
         meta: { ...prevState.meta, [name]: checked },
+      }));
+    } else if (type === "range") {
+      setVenue((prevVenue) => ({
+        ...prevVenue,
+        rating: value,
       }));
     } else if (name.startsWith("location")) {
       const locationKey = name.split(".")[1];
@@ -140,7 +164,25 @@ function CreateVenue() {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group  mt-2">
+        <div className="form-group mt-2">
+          <label htmlFor="rating">Rating:</label>
+          <Slider
+            value={venue.rating}
+            min={0}
+            max={5}
+            step={1}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            className="form-control mt-1"
+            id="rating"
+            name="rating"
+            value={venue.rating}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group mt-5">
           <label htmlFor="wifi">Wi-Fi:</label>
           <input
             type="checkbox"

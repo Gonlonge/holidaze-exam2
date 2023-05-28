@@ -1,3 +1,5 @@
+// Booking for specific venue
+
 import React, { useState, useEffect } from "react";
 import { API_BASE, API_BOOKINGS, API_VENUE } from "../ApiEndpoints";
 import DatePicker from "react-datepicker";
@@ -128,7 +130,7 @@ function BookingCalender({ venueId }) {
             (booking) => new Date(booking.dateFrom)
           )}
           onChange={handleCheckInChange}
-          className="form-control" // Add the desired class for styling
+          className="form-control"
         />
       </div>
       <div className="form-group mt-2">
@@ -146,7 +148,7 @@ function BookingCalender({ venueId }) {
               dateTo: date,
             }))
           }
-          className="form-control" // Add the desired class for styling
+          className="form-control"
         />
       </div>
       <div className="form-group mt-2">

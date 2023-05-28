@@ -1,4 +1,5 @@
-// import Nav from "./Nav";
+// Company Logo
+
 import logoIcon from "../../images/umbrella-icon.png";
 import { Link } from "react-router-dom";
 

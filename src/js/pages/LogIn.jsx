@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Container, Form, Button, Alert } from "react-bootstrap";
-import { API_BASE, API_LOGIN } from "../ApiEndpoints";
+import { signIn } from "../ApiCalls";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [validationErrors, setValidationErrors] = useState({});
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const [isError, setIsError] = useState(false);
 
   const validateForm = () => {
     const errors = {};
@@ -33,37 +36,31 @@ function Login() {
     }
 
     try {
-      const response = await fetch(`${API_BASE}${API_LOGIN}`, {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
+      const response = await signIn(email, password);
+      if (!response) {
         setError("Invalid email or password.");
         return;
       }
-
-      const json = await response.json(); // Parse response data as JSON
-      console.log(json); // Log the JSON data
+  
       setEmail("");
       setPassword("");
       setError(null);
-
+  
       // Store the accessToken in localStorage
-      localStorage.setItem("accessToken", json.accessToken);
-      localStorage.setItem("name", json.name);
-
+      localStorage.setItem("accessToken", response.accessToken);
+      localStorage.setItem("name", response.name);
+  
       console.log("Successful login!");
       // Redirect to profile page
-      window.location.href = "/Profile";
-    } catch (error) {
-      setError("An error occurred. Please try again later.");
-      console.error(error);
+      navigate("/Profile");
+    } catch {
+      setIsError(true);
     }
   };
+
+  if (isError) {
+    return <ErrorIndicator />;
+  }
 
   return (
     <Container>
