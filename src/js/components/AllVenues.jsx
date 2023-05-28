@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { API_BASE, API_VENUE } from "../ApiEndpoints";
-import { Col, Row, Image } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import star from "../../images/star.png";
 import SearchInput from "../components/search";
 import LoadingIndicator from "./LoadingIndicator";
@@ -115,12 +115,14 @@ function AllVenues() {
           <Col md={4} sm={6} key={venue.id}>
             <Link to={`RentalDetail/${venue.id}`}>
               {venue.media.length > 0 ? (
-                <div className="ratio ratio-4x3">
-                  <Image
-                    className="img-fluid rounded"
-                    src={venue.media[0]}
-                    alt={venue.name}
-                  />
+                <div className="image-ratio-container">
+                  <div className="image-ratio-content">
+                    <img
+                      className="img-fluid rounded"
+                      src={venue.media[0]}
+                      alt={venue.name}
+                    />
+                  </div>
                 </div>
               ) : null}
               <div className="mt-2 mb-5">
@@ -128,7 +130,6 @@ function AllVenues() {
                   <Col>
                     <div className="d-flex justify-content-between">
                       <h5>{venue.name}</h5>
-
                       <h5>
                         <img className="pb-2 pe-1" src={star} alt="star" />
                         {venue.rating}
