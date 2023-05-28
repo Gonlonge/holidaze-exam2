@@ -41,47 +41,70 @@ function CreateVenue() {
   });
 
   const [mediaUrl, setMediaUrl] = useState("");
+  const [formErrors, setFormErrors] = useState({});
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (venue.name.trim() === "") {
+      errors.name = "Title is required";
+    }
+
+    if (venue.price <= 0) {
+      errors.price = "Please enter a valid price";
+    }
+
+    if (venue.maxGuests <= 0) {
+      errors.maxGuests = "Please enter a valid number of guests";
+    }
+
+    setFormErrors(errors);
+
+    return Object.keys(errors).length === 0;
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const newVenue = {
-      name: venue.name,
-      description: venue.description,
-      media: mediaUrl ? [mediaUrl] : [], // include the media URL in the newVenue object
-      price: parseInt(venue.price),
-      maxGuests: parseInt(venue.maxGuests), // Make sure maxGuests is a number
-      rating: parseInt(venue.rating),
-      meta: venue.meta,
-      location: venue.location,
-    };
-    const token = localStorage.getItem("accessToken");
-    console.log("Token:", token);
-    fetch(`${API_BASE}${API_VENUE}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(newVenue),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
+    if (validateForm()) {
+      const newVenue = {
+        name: venue.name,
+        description: venue.description,
+        media: mediaUrl ? [mediaUrl] : [],
+        price: parseInt(venue.price),
+        maxGuests: parseInt(venue.maxGuests),
+        rating: parseInt(venue.rating),
+        meta: venue.meta,
+        location: venue.location,
+      };
 
-        return response.json();
+      const token = localStorage.getItem("accessToken");
+      console.log("Token:", token);
+      fetch(`${API_BASE}${API_VENUE}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(newVenue),
       })
-      .then((data) => {
-        <LoadingIndicator />;
-        console.log("Success:", data);
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+
+          return response.json();
+        })
+        .then((data) => {
+          <LoadingIndicator />;
+          console.log("Success:", data);
+          navigate("/");
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
   };
-
   const handleChange = (event) => {
     const { name, value, checked, type } = event.target;
 
@@ -119,16 +142,22 @@ function CreateVenue() {
     <div className="container">
       <Nav />
       <form onSubmit={handleSubmit}>
+        {/* Form inputs and validation */}
         <div className="form-group">
           <label htmlFor="name">Title:</label>
           <input
             type="text"
-            className="form-control mt-1"
+            className={`form-control mt-1 ${
+              formErrors.name ? "is-invalid" : ""
+            }`}
             id="name"
             name="name"
             value={venue.name}
             onChange={handleChange}
           />
+          {formErrors.name && (
+            <div className="invalid-feedback">{formErrors.name}</div>
+          )}
         </div>
 
         <div className="form-group mt-2">
@@ -146,24 +175,36 @@ function CreateVenue() {
           <label htmlFor="price">Price:</label>
           <input
             type="number"
-            className="form-control  mt-1"
+            className={`form-control mt-1 ${
+              formErrors.price ? "is-invalid" : ""
+            }`}
             id="price"
             name="price"
             value={venue.price}
             onChange={handleChange}
           />
+          {formErrors.price && (
+            <div className="invalid-feedback">{formErrors.price}</div>
+          )}
         </div>
+
         <div className="form-group mt-2">
           <label htmlFor="maxGuests">Max Guests:</label>
           <input
             type="number"
-            className="form-control mt-1"
+            className={`form-control mt-1 ${
+              formErrors.maxGuests ? "is-invalid" : ""
+            }`}
             id="maxGuests"
             name="maxGuests"
             value={venue.maxGuests}
             onChange={handleChange}
           />
+          {formErrors.maxGuests && (
+            <div className="invalid-feedback">{formErrors.maxGuests}</div>
+          )}
         </div>
+
         <div className="form-group mt-2">
           <label htmlFor="rating">Rating:</label>
           <Slider

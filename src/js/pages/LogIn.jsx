@@ -16,11 +16,11 @@ function Login() {
     const errors = {};
 
     if (!email) {
-      errors.email = "Please enter your email address.";
+      errors.email = "Please enter your email address (name@noroff.no)";
     }
 
     if (!password) {
-      errors.password = "Please enter your password.";
+      errors.password = "Please enter your password";
     }
 
     setValidationErrors(errors);
@@ -41,15 +41,15 @@ function Login() {
         setError("Invalid email or password.");
         return;
       }
-  
+
       setEmail("");
       setPassword("");
       setError(null);
-  
+
       // Store the accessToken in localStorage
       localStorage.setItem("accessToken", response.accessToken);
       localStorage.setItem("name", response.name);
-  
+
       console.log("Successful login!");
       // Redirect to profile page
       navigate("/Profile");
@@ -71,7 +71,7 @@ function Login() {
             <Form.Label>Email address</Form.Label>
             <Form.Control
               type="email"
-              placeholder="name@stud.noroff.no"
+              placeholder="name@noroff.no"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               isInvalid={!!validationErrors.email}

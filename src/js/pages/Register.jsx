@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import LoadingIndicator from "../components/LoadingIndicator";
 import ErrorIndicator from "../components/ErrorIndicator";
-import { signUp, signIn } from "../ApiCalls"; 
+import { signUp, signIn } from "../ApiCalls";
 
 function Register() {
   console.log("Register her ?");
@@ -30,9 +30,9 @@ function Register() {
     }
 
     if (!formData.email) {
-      errors.email = "Please enter your email address";
+      errors.email = "Please enter your email address (name@noroff.no)";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = "Please enter a valid email address";
+      errors.email = "Please enter a valid email address (name@noroff.no)";
     }
 
     if (!formData.password) {
@@ -52,11 +52,10 @@ function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (validateForm()) {
-
       setIsError(false);
       setIsLoading(true);
 
-      try { 
+      try {
         const response = await signUp(formData);
         setIsLoading(false);
         if (response) {
@@ -80,7 +79,7 @@ function Register() {
             setIsError(true);
           }
         } else {
-          window.alert('Something went wrong, please try again.');
+          window.alert("Something went wrong, please try again.");
         }
       } catch {
         setIsError(true);
@@ -126,7 +125,7 @@ function Register() {
             <Form.Label>Email address</Form.Label>
             <Form.Control
               type="email"
-              placeholder="name@stud.noroff.no"
+              placeholder="username@noroff.no"
               value={formData.email}
               name="email"
               onChange={handleChange}

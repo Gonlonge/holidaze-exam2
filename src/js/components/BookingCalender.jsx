@@ -9,7 +9,7 @@ function BookingCalender({ venueId }) {
   const [formData, setFormData] = useState({
     dateFrom: "",
     dateTo: "",
-    guests: 0,
+    guests: 1,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -172,7 +172,7 @@ function BookingCalender({ venueId }) {
       </button>
       {isError && (
         <div className="alert alert-danger mt-3" role="alert">
-          There was an error submitting your booking. Please try again later.
+          Ops, try another date
         </div>
       )}
       {successMessage && (
