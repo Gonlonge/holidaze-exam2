@@ -34,13 +34,6 @@ There are two aspects to this brief: the customer-facing side of the website whe
 
 - Trello Board
 
-## Clone the repo
-
-```
-https://www.linkedin.com/in/gonzalo-longe-711237191/
-```
-
-
 ## Test the home page
 
 Test the website how it works in each screen device.
